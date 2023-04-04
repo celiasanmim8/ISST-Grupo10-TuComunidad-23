@@ -10,6 +10,8 @@ import org.springframework.context.annotation.Bean;
 import es.upm.dit.isst.grupo10tucomunidad.model.Noticia;
 import es.upm.dit.isst.grupo10tucomunidad.repository.NoticiaRepository;
 
+
+
 @SpringBootApplication
 public class Grupo10tucomunidadApplication {
 
