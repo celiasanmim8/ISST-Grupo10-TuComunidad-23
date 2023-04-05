@@ -9,6 +9,7 @@ import './App.css';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import Container from 'react-bootstrap/Container';
+import VerContacto from './components/Contacto/VerContacto';
 
 function App() {
     const [noticiaslist, setNoticiaslist] = useState([]);
@@ -82,6 +83,7 @@ function App() {
                             <Nav className="me-auto">
                                 <Nav.Link href="/noticias">Noticias</Nav.Link>
                                 <Nav.Link href="/sugerencias">Sugerencias</Nav.Link>
+                                <Nav.Link href="/contacto">Contactos</Nav.Link>
                             </Nav>
                         </Navbar.Collapse>
                     </Container>
@@ -94,6 +96,7 @@ function App() {
                     <Route path="/noticias/crear" element={<CrearNoticias />} />
                     <Route path="/sugerencias" element={<VerSugerencias sugerenciaslist={sugerenciaslist} />} />
                     <Route path="/sugerencias/crear" element={<CrearSugerencias />} />
+                    <Route path="/contacto" element={<VerContacto />} />
                 </Routes>
             </div>
         </div>
