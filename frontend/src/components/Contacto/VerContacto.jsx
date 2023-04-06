@@ -3,9 +3,15 @@ import { Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Card from 'react-bootstrap/Card';
 
-const VerContacto = (props) => {
+const VerContacto = () => {
     return (
     <div class="contenedor-flexbox">
+    <Container>
+        <Row className="my-2">
+            <Col>
+                <h2>Contactos</h2>
+            </Col>
+        </Row>
         <Row className="my-2">
             <Col>
                 <Card className="flex-fill text-wrap">
@@ -32,6 +38,7 @@ const VerContacto = (props) => {
                 </Card>
             </Col>
         </Row>
+    </Container>
     </div>
 
     );
