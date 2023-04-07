@@ -2,9 +2,11 @@ import { Button, Col, Row } from "react-bootstrap";
 import { Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Card from 'react-bootstrap/Card';
+import VerComentario from "../Comentarios/VerComentario";
 
 
 const VerSugerencias = (props) => {
+    const comentariolist = props.comentariolist
     const sugerenciaslist = props.sugerenciaslist
     return (<div class="contenedor-flexbox">
 
@@ -25,10 +27,13 @@ const VerSugerencias = (props) => {
                                 <Card.Title href="#">{sugerenciasItem.titulo}</Card.Title>
                                 <Card.Subtitle className="mb-2 text-muted">
                                     <p>Creado el {sugerenciasItem.fechaCreacion} </p>
+
                                 </Card.Subtitle>
                                 <Card.Text className="text-truncate">{sugerenciasItem.descripcion}</Card.Text>
                                 <Button href={`/sugerencias/${sugerenciasItem.id}/responder`}>Responder</Button>
+
                             </Card.Body>
+                            <VerComentario comentariolist={comentariolist} sugerenciaslist = {sugerenciaslist}/>
                         </Card>
                     </Col>
                 </Row>
