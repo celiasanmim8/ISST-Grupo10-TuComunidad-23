@@ -30,7 +30,7 @@ const VerSugerencias = (props) => {
 
                                 </Card.Subtitle>
                                 <Card.Text className="text-truncate">{sugerenciasItem.descripcion}</Card.Text>
-                                <Button href={`/sugerencias/${sugerenciasItem.id}/responder`}>Responder</Button>
+                                <Button href={`/sugerencias/${sugerenciasItem.id}`}>Responder</Button>
 
                             </Card.Body>
                             <VerComentario comentariolist={comentariolist} sugerenciaslist = {sugerenciaslist}/>

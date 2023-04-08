@@ -25,20 +25,20 @@ public class ComentarioController {
     }
 
     @CrossOrigin(origins = "http://localhost:3000")
-    @GetMapping("/sugerencias/{id}")
+    @GetMapping("/sugerencias/responder")
     List<Comentario> readAll() {
         return (List<Comentario>) comentarioRepository.findAll();
     }
 
     @CrossOrigin(origins = "http://localhost:3000")
-    @PostMapping("/sugerencias/{id}")
+    @PostMapping("/sugerencias/responder")
     ResponseEntity<Comentario> create(@RequestBody Comentario newComentario) throws URISyntaxException {
         Comentario res = comentarioRepository.save(newComentario);
-        return ResponseEntity.created(new URI("/sugerencia/" + res.getId())).body(res);
+        return ResponseEntity.created(new URI("/sugerencias/responder/")).body(res);
     }
 
     @CrossOrigin(origins = "http://localhost:3000")
-    @PutMapping("/sugerencias/{id}/responder")
+    @PutMapping("/sugerencias/responder")
     ResponseEntity<Comentario> update(@RequestBody Comentario newComentario, @PathVariable String id) {
         return comentarioRepository.findById(id).map(comentario -> {
             comentarioRepository.save(comentario);

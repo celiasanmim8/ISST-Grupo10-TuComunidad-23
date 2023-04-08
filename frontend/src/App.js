@@ -124,8 +124,7 @@ function App() {
                     <Route path="/noticias/crear" element={<CrearNoticias />} />
                     <Route path="/sugerencias" element={<VerSugerencias sugerenciaslist={sugerenciaslist} comentariolist={comentariolist}/>} />
                     <Route path="/sugerencias/crear" element={<CrearSugerencias />} />
-                    <Route path="/sugerencias/:sugerenciaId" element={<VerComentario/>} comentariolist={comentariolist} />
-                    <Route path="/sugerencias/:sugerenciaId/responder" element={<CrearComentario/>} />
+                    <Route path="/sugerencias/:sugerenciaId" element={<CrearComentario/>} />
                     <Route path="/contacto" element={<VerContacto />} />
                 </Routes>
             </div>

@@ -24,7 +24,7 @@ const CrearSugerencias = () => {
                 }),
             };
             
-            await fetch('http://localhost:8080/sugerencias/{sugerenciaId}', requestOptions);
+            await fetch('http://localhost:8080/sugerencias/responder', requestOptions);
             setDescripcion('');
             navigate('/sugerencias')
         }
