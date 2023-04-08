@@ -70,3 +70,22 @@
  /*Con esto le indicamos que margine todos los items que se encuentra adentro hacia la derecha e izquierda*/
 /*con esto alineamos de manera vertical*/
 }
+
+.news-title{
+  font-size:x-large;
+  color:dodgerblue;
+  text-align:center;
+  margin-top:3%;
+}
+
+.news-description{
+  font-size:large;
+  color:black;
+  text-align:center;
+  margin-top:3%;
+}
+
+.news-button{
+  background-color:dodgerblue;
+}
+

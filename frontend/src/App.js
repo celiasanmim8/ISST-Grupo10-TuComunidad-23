@@ -10,6 +10,7 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import Container from 'react-bootstrap/Container';
 import VerContacto from './components/Contacto/VerContacto';
+import UnaNoticia from './components/Noticias/UnaNoticia';
 
 function App() {
     const [noticiaslist, setNoticiaslist] = useState([]);
@@ -93,6 +94,7 @@ function App() {
                 <Routes>
                     <Route path="/" element={<Navigate replace to="/noticias" />}></Route>
                     <Route path="/noticias" element={<VerNoticias noticiaslist={noticiaslist} />} />
+                    <Route path="/noticias/:noticiaId" element={<UnaNoticia noticiaslist={noticiaslist} />}/>
                     <Route path="/noticias/crear" element={<CrearNoticias />} />
                     <Route path="/sugerencias" element={<VerSugerencias sugerenciaslist={sugerenciaslist} />} />
                     <Route path="/sugerencias/crear" element={<CrearSugerencias />} />
