@@ -15,7 +15,6 @@ const VerComentario = (props) => {
                             <Card className="flex-fill text-wrap">
                                 <Card.Body>
                                     <Card.Text className="text-truncate">{comentarioItem.descripcion}</Card.Text>
-
                                 </Card.Body>
                             </Card>
                         </Col>

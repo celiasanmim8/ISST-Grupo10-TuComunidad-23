@@ -12,6 +12,9 @@ import Container from 'react-bootstrap/Container';
 import VerContacto from './components/Contacto/VerContacto';
 import CrearComentario from './components/Comentarios/CrearComentario';
 import UnaNoticia from './components/Noticias/UnaNoticia';
+import VerComentario from './components/Comentarios/VerComentario';
+
+
 
 function App() {
     const [noticiaslist, setNoticiaslist] = useState([]);
@@ -62,7 +65,7 @@ function App() {
 
 
         const fetchComentario = async () => {
-            const response = await fetch('http://localhost:8080/sugerencia/1/');
+            const response = await fetch('http://localhost:8080/sugerencias/responder');
             const comentarioData = await response.json();
     
             // Format the date for each fetched item
@@ -121,7 +124,8 @@ function App() {
                     <Route path="/noticias/crear" element={<CrearNoticias />} />
                     <Route path="/sugerencias" element={<VerSugerencias sugerenciaslist={sugerenciaslist} comentariolist={comentariolist}/>} />
                     <Route path="/sugerencias/crear" element={<CrearSugerencias />} />
-                    <Route path="/sugerencias/1/responder" element={<CrearComentario/>} />
+                    <Route path="/sugerencias/:sugerenciaId" element={<VerComentario/>} comentariolist={comentariolist} />
+                    <Route path="/sugerencias/:sugerenciaId/responder" element={<CrearComentario/>} />
                     <Route path="/contacto" element={<VerContacto />} />
                 </Routes>
             </div>

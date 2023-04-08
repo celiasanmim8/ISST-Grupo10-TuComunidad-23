@@ -1,21 +1,19 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 
 const CrearSugerencias = () => {
-    const [titulo, setTitulo] = useState('');
     const [descripcion, setDescripcion] = useState('');
     const navigate = useNavigate();
-
+    let{sugerenciaId} = useParams();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        if (titulo.trim() && descripcion.trim()) {
+        if (descripcion.trim()) {
             const sugerenciasItem = {
                 descripcion,
-                sugerenciaId: 1,
+                sugerenciaId: sugerenciaId,
                 // TODO: cambiar cuando se establezca sesiones de usuario
                 userId: 1,
-                fechaCreacion: new Date().toISOString(),
             };
 
             const requestOptions = {
@@ -26,8 +24,7 @@ const CrearSugerencias = () => {
                 }),
             };
             
-            await fetch('http://localhost:8080/sugerencias/{id}/responder', requestOptions);
-            setTitulo('');
+            await fetch('http://localhost:8080/sugerencias/{sugerenciaId}', requestOptions);
             setDescripcion('');
             navigate('/sugerencias')
         }

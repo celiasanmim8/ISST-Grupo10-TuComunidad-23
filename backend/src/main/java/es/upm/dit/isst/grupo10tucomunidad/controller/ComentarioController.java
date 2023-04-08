@@ -38,7 +38,7 @@ public class ComentarioController {
     }
 
     @CrossOrigin(origins = "http://localhost:3000")
-    @PutMapping("/sugerencias/{id}/respuesta")
+    @PutMapping("/sugerencias/{id}/responder")
     ResponseEntity<Comentario> update(@RequestBody Comentario newComentario, @PathVariable String id) {
         return comentarioRepository.findById(id).map(comentario -> {
             comentarioRepository.save(comentario);
