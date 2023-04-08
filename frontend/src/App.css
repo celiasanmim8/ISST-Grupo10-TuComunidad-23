@@ -86,6 +86,8 @@
 }
 
 .news-button{
-  background-color:dodgerblue;
+  display: flex;
+  justify-content:center;
+  align-items:center;
 }
 

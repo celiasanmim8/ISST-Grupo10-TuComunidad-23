@@ -15,7 +15,9 @@ const UnaNoticia = (props) => {
             <div>
                 <p className="news-description">{noticiaslist[position - 1].descripcion}</p>
             </div>
-            <Button href="/" className="news-button">Volver</Button>
+            <div className="news-button">
+                <Button href="/">Volver</Button>
+            </div>
         </div>
     );
 };
