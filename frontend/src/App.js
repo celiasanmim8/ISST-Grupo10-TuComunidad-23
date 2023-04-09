@@ -87,7 +87,7 @@ function App() {
         /* Para refrescar periódicamente */
         const intervalNoticias = setInterval(fetchNoticias, 10000);
         const intervalSuerencias = setInterval(fetchSugerencias, 10000);
-        const intervalComentario = setInterval(fetchSugerencias, 10000);
+        const intervalComentario = setInterval(fetchComentario, 10000);
         return () => {
             clearInterval(intervalNoticias);
             clearInterval(intervalSuerencias);

@@ -5,19 +5,23 @@ import Card from 'react-bootstrap/Card';
 
 
 const VerComentario = (props) => {
-    const comentariosList = props.comentariolist
+    const comentariosList = props.comentariolist;
+    const id = props.sugerenciaId;
+    console.log(id);
     return (
         <div class="contenedor-flexbox">
             <Container>
-                {comentariosList.slice().reverse().map((comentarioItem) => (
+                {comentariosList.map((comentarioItem) => (
                     <Row className="my-2">
-                        <Col key={comentarioItem.id}>
-                            <Card className="flex-fill text-wrap">
-                                <Card.Body>
-                                    <Card.Text className="text-truncate">{comentarioItem.descripcion}</Card.Text>
-                                </Card.Body>
-                            </Card>
-                        </Col>
+                        {(comentarioItem.sugerenciaId === id ? 
+                            <Col key={comentarioItem.id}>
+                                <Card className="flex-fill text-wrap">
+                                    <Card.Body>
+                                        <Card.Text className="text-truncate">{comentarioItem.descripcion}</Card.Text>             
+                                    </Card.Body>
+                                </Card>
+                            </Col>
+                        : null )}    
                     </Row>
                 ))}
             </Container>

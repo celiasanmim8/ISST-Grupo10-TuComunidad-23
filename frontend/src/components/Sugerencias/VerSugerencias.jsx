@@ -33,7 +33,7 @@ const VerSugerencias = (props) => {
                                 <Button href={`/sugerencias/${sugerenciasItem.id}`}>Responder</Button>
 
                             </Card.Body>
-                            <VerComentario comentariolist={comentariolist} sugerenciaslist = {sugerenciaslist}/>
+                            <VerComentario comentariolist={comentariolist} sugerenciaslist = {sugerenciaslist} sugerenciaId = {sugerenciasItem.id} />
                         </Card>
                     </Col>
                 </Row>
