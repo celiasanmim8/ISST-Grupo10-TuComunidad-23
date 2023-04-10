@@ -6,7 +6,7 @@ import Card from 'react-bootstrap/Card';
 const VerContacto = () => {
     return (
         <div class="contenedor-flexbox">
-            <Container>
+            <Container style={{ maxHeight: '100vh', overflowY: 'scroll' }}>
                 <Row className="my-2">
                     <Col>
                         <h2>Contactos</h2>
