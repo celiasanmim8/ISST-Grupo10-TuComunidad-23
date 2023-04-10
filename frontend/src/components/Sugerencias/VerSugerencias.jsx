@@ -28,7 +28,7 @@ const VerSugerencias = (props) => {
 
                                 </Card.Subtitle>
                                 <Card.Text>{sugerenciasItem.descripcion}</Card.Text>
-                                <Button href={`/sugerencias/${sugerenciasItem.id}`}>Responder</Button>
+                                <Button variant='success' type='submit' style={{ width: '7rem' }} href={`/sugerencias/${sugerenciasItem.id}`}>Responder</Button>
 
                             </Card.Body>
                             <VerComentario comentariolist={comentariolist} sugerenciaslist={sugerenciaslist} sugerenciaId={sugerenciasItem.id} />

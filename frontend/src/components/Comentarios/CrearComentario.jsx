@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate, useParams } from "react-router-dom";
+import { Button, Form, Container } from 'react-bootstrap';
 
 const CrearSugerencias = () => {
     const [descripcion, setDescripcion] = useState('');
@@ -32,19 +33,24 @@ const CrearSugerencias = () => {
 
 
     return (
-        <div>
-            <h2>Responder sugerencia</h2>
-            <form onSubmit={handleSubmit}>
-                <label htmlFor="descripcion">Respuesta:  </label>
-                <textarea
-                    id="descripcion"
-                    value={descripcion}
-                    onChange={(e) => setDescripcion(e.target.value)}
-                />
-                <button type="submit">Submit</button>
-                <Link to={"/sugerencias"}><button>Cancelar</button></Link>
-            </form>
-        </div>
+        <Container className='mx-4 my-4'>
+            <h2>Responder a la sugerencia</h2>
+            <br/>
+            <Form onSubmit={handleSubmit}>
+                <Form.Group className='mb-3'>
+                    <Form.Label className='h5'>Su respuesta</Form.Label>
+                    <Form.Control as="textarea" rows={2} onChange={(e) => setDescripcion(e.target.value)}></Form.Control>
+                </Form.Group>
+                <Button variant='success' type='submit' style={{ width: '7rem' }} onClick={() => window.location.href="/sugerencias"}>
+                    Responder
+                </Button>{'  '}
+                <Link to={"/sugerencias"}>
+                    <Button variant='danger' type='Volver' className='w-4' style={{ width: '7rem' }}>
+                        Cancelar
+                    </Button>
+                </Link>
+            </Form>
+        </Container>
     );
 };
 
