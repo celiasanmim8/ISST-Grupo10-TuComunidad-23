@@ -2,7 +2,6 @@ import { Button, Col, Row } from "react-bootstrap";
 import { Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Card from 'react-bootstrap/Card';
-import Sidebar from './Sidebar';
 import { ArrowRight } from "react-bootstrap-icons";
 
 const VerNoticias = (props) => {

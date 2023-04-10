@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Button, Container, Form, Row } from 'react-bootstrap';
 import { Link, useNavigate } from "react-router-dom";
 
 const CreateNews = () => {
@@ -39,7 +40,7 @@ const CreateNews = () => {
                     adjunto: adjuntoBytes ? Array.from(adjuntoBytes) : null,
                 }),
             };
-            
+
             await fetch('http://localhost:8080/noticias', requestOptions);
             setTitulo('');
             setDescripcion('');
@@ -58,35 +59,35 @@ const CreateNews = () => {
     };
 
     return (
-        <div>
-            <h2>Crear nueva noticia</h2>
-            <form onSubmit={handleSubmit}>
-                <label htmlFor="titulo">Título:</label>
-                <input
-                    type="text"
-                    id="titulo"
-                    value={titulo}
-                    onChange={(e) => setTitulo(e.target.value)}
-                />
+        <Container className='mx-4 my-4'>
+            <h2>Nueva noticia</h2>
+            <Form onSubmit={handleSubmit}>
+                <Form.Group className='mb-3'>
+                    <Form.Label className='h3'>Título</Form.Label>
+                    <Form.Control as="textarea" rows={2} onChange={(e) => setTitulo(e.target.value)}></Form.Control>
+                </Form.Group>
 
-                <label htmlFor="descripcion">Descripción:</label>
-                <textarea
-                    id="descripcion"
-                    value={descripcion}
-                    onChange={(e) => setDescripcion(e.target.value)}
-                />
-                
-                <label htmlFor="adjunto">Adjunto (optional):</label>
-                <input
-                    type="file"
-                    id="adjunto"
-                    accept="image/*"
-                    onChange={handleFileChange}
-                />
-                <button type="submit">Submit</button>
-                <Link to={"/"}><button>Cancelar</button></Link>
-            </form>
-        </div>
+                <Form.Group className='mb-3'>
+                    <Form.Label className='h3'>Descripción</Form.Label>
+                    <Form.Control as="textarea" rows={10} onChange={(e) => setDescripcion(e.target.value)}></Form.Control>
+                </Form.Group>
+
+                <Form.Group className='mb-3'>
+                    <Form.Label className='h3'>Imágenes adjuntas</Form.Label>
+                    <Form.Control type="file" onChange={handleFileChange}></Form.Control>
+                </Form.Group>
+
+                <Button variant='success' type='submit' style={{ width: '7rem' }} onClick={() => window.location.href="/noticias"}>
+                    Crear
+                </Button>{'  '}
+
+                <Link to={"/noticias"}>
+                    <Button variant='danger' type='Volver' className='w-4' style={{ width: '7rem' }}>
+                        Cancelar
+                    </Button>
+                </Link>
+            </Form>
+        </Container>
     );
 };
 

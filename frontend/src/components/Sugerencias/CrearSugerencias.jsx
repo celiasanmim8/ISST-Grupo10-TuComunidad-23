@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Button, Container, Form } from 'react-bootstrap';
 import { Link, useNavigate } from "react-router-dom";
 
 const CrearSugerencias = () => {
@@ -25,7 +26,7 @@ const CrearSugerencias = () => {
                     ...sugerenciasItem
                 }),
             };
-            
+
             await fetch('http://localhost:8080/sugerencias', requestOptions);
             setTitulo('');
             setDescripcion('');
@@ -35,28 +36,30 @@ const CrearSugerencias = () => {
 
 
     return (
-        <div>
-            <h2>Crear nueva sugerencia</h2>
-            <form onSubmit={handleSubmit}>
-                <label htmlFor="titulo">Título:</label>
-                <input
-                    type="text"
-                    id="titulo"
-                    value={titulo}
-                    onChange={(e) => setTitulo(e.target.value)}
-                />
+        <Container className='mx-4 my-4'>
+            <h2>Nueva sugerencia</h2>
+            <Form onSubmit={handleSubmit}>
+                <Form.Group className='mb-3'>
+                    <Form.Label className='h3'>Título</Form.Label>
+                    <Form.Control as="textarea" rows={2} onChange={(e) => setTitulo(e.target.value)}></Form.Control>
+                </Form.Group>
 
-                <label htmlFor="descripcion">Descripción:</label>
-                <textarea
-                    id="descripcion"
-                    value={descripcion}
-                    onChange={(e) => setDescripcion(e.target.value)}
-                />
-                
-                <button type="submit">Submit</button>
-                <Link to={"/sugerencias"}><button>Cancelar</button></Link>
-            </form>
-        </div>
+                <Form.Group className='mb-3'>
+                    <Form.Label className='h3'>Descripción</Form.Label>
+                    <Form.Control as="textarea" rows={10} onChange={(e) => setDescripcion(e.target.value)}></Form.Control>
+                </Form.Group>
+
+                <Button variant='success' type='submit' style={{ width: '7rem' }} onClick={() => window.location.href="/sugerencias"}>
+                    Crear
+                </Button>{'  '}
+
+                <Link to={"/sugerencias"}>
+                    <Button variant='danger' type='Volver' className='w-4' style={{ width: '7rem' }}>
+                        Cancelar
+                    </Button>
+                </Link>
+            </Form>
+        </Container>
     );
 };
 
