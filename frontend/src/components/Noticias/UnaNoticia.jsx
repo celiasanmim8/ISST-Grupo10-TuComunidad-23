@@ -3,22 +3,20 @@ import { Link, useParams } from "react-router-dom";
 
 
 const UnaNoticia = (props) => {
-    let{noticiaId} = useParams();
+    let { noticiaId } = useParams();
     let position = noticiaId;
     const noticiaslist = props.noticiaslist;
 
     return (
-        <div>
-            <div>
+        <Row className="mx-0 my-0 w-100">
+            <Col>
                 <p className="news-title"><b>{noticiaslist[position - 1].titulo}</b></p>
-            </div>
-            <div>
                 <p className="news-description">{noticiaslist[position - 1].descripcion}</p>
-            </div>
-            <div className="news-button">
-                <Button href="/">Volver</Button>
-            </div>
-        </div>
+                <div className="news-button">
+                    <Button href="/">Volver</Button>
+                </div>
+            </Col>
+        </Row>
     );
 };
 

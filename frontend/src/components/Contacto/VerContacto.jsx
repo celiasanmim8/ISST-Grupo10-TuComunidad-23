@@ -14,7 +14,7 @@ const VerContacto = () => {
         </Row>
         <Row className="my-2">
             <Col>
-                <Card className="flex-fill text-wrap">
+                <Card className="flex-fill text-wrap my-1">
                     <Card.Body>
                         <Card.Title href="#">Presidente</Card.Title>
                             <Card.Subtitle className="mb-2 text-muted">
@@ -26,7 +26,7 @@ const VerContacto = () => {
                 </Card>
             </Col>
             <Col>
-                <Card className="flex-fill text-wrap">
+                <Card className="flex-fill text-wrap my-1">
                     <Card.Body>
                         <Card.Title href="#">Administrador</Card.Title>
                             <Card.Subtitle className="mb-2 text-muted">

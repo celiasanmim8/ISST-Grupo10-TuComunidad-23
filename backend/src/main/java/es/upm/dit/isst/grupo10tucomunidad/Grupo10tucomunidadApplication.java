@@ -33,7 +33,7 @@ public class Grupo10tucomunidadApplication {
 			));
 			noticiaRepository.save(new Noticia(
 				null,
-				"Abierta la convocatoria para plazas de garaje del edificio",
+				"Abierta la convocatoria del año 2024 para plazas de garaje del edificio",
 				"Convocatoria abierta hasta el 1 de mayo, inclusiva. Proporcionar información de vehículo y personal al presidente",
 				1L,
 				LocalDateTime.now(),
@@ -43,7 +43,17 @@ public class Grupo10tucomunidadApplication {
 				null,
 				"Queda habilitada la sala de reuniones para poder visualizar la final de la Champions League",
 				"Debido a la demanda de peticiones y tras una reflexión por parte del presidente, vicepresidente y administrador " +
-					"se permitirá a los vecinos lo descrito en el título. Recordamos que dicha sala se encuentra en el el bajo, sección B, número 3." +
+					"se permitirá a los vecinos lo descrito en el título. Recordamos que dicha sala se encuentra en el el bajo, sección B, número 3. " +
+					"El aforo máximo es de 60 personas, se ruega no sobrepasar dicho límite y cuidar del material. Gracias.",
+				1L,
+				LocalDateTime.now(),
+				null
+			));
+			noticiaRepository.save(new Noticia(
+				null,
+				"Horario de verano para la recogida de basuras",
+				"Debido a la demanda de peticiones y tras una reflexión por parte del presidente, vicepresidente y administrador " +
+					"se permitirá a los vecinos lo descrito en el título. Recordamos que dicha sala se encuentra en el el bajo, sección B, número 3. " +
 					"El aforo máximo es de 60 personas, se ruega no sobrepasar dicho límite y cuidar del material. Gracias.",
 				1L,
 				LocalDateTime.now(),

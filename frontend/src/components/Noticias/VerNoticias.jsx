@@ -3,12 +3,11 @@ import { Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Card from 'react-bootstrap/Card';
 import Sidebar from './Sidebar';
+import { ArrowRight } from "react-bootstrap-icons";
 
 const VerNoticias = (props) => {
     const noticiaslist = props.noticiaslist
-    return (<div class="contenedor-flexbox">
-
-
+    return (
         <Container>
             <Row className="my-2">
                 <Col>
@@ -16,26 +15,35 @@ const VerNoticias = (props) => {
                     <Button href="/noticias/crear">Crear nueva noticia</Button>
                 </Col>
             </Row>
-
-            {noticiaslist.slice().reverse().map((noticiaItem) => (
-                <Row className="my-2">
-                    <Col key={noticiaItem.id}>
-                        <Link to={`/noticias/${noticiaItem.id}`} style={{color: 'black', textDecoration: 'none'}}>
-                            <Card className="flex-fill text-wrap">
-                                <Card.Body>
+            <Row>
+                {noticiaslist.slice().reverse().map((noticiaItem) => (
+                    <Col key={noticiaItem.id} md={6}>
+                        <Link to={`/noticias/${noticiaItem.id}`} style={{ color: 'black', textDecoration: 'none' }}>
+                            <Card className="my-1">
+                                <Card.Body style={{ maxWidth: '90%' }}>
                                     <Card.Title href="#">{noticiaItem.titulo}</Card.Title>
-                                    <Card.Subtitle className="mb-2 text-muted">
+                                    <Card.Subtitle className="text-muted">
                                         <p>Creado el {noticiaItem.fechaCreacion} </p>
                                     </Card.Subtitle>
-                                    <Card.Text className="text-truncate">{noticiaItem.descripcion}</Card.Text>
+                                    {/*}
+                                    <Card.Text>{noticiaItem.descripcion}</Card.Text>
+                                    {*/}
                                 </Card.Body>
+                                <div className="arrow" style={{
+                                    position: 'absolute',
+                                    right: '20px',
+                                    top: '50%',
+                                    transform: 'translateY(-50%)',
+                                    fontSize: '2rem'
+                                }}>
+                                    <ArrowRight color="royalblue" />
+                                </div>
                             </Card>
                         </Link>
                     </Col>
-                </Row>
-            ))}
+                ))}
+            </Row>
         </Container>
-        </div>
     );
 };
 
