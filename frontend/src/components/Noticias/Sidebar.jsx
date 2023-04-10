@@ -33,17 +33,15 @@ const Sidebar = () => {
                     </CDBSidebarMenu>
                 </CDBSidebarContent>
 
-                {/*}
-                <CDBSidebarFooter style={{ textAlign: 'center' }}>
-                    <div
-                        style={{
-                            padding: '20px 5px',
-                        }}
-                    >
-                        Sidebar Footer
-                    </div>
+                
+                <CDBSidebarFooter style={{ display: 'flex', justifyContent: 'center' }}>               
+                 <img
+                    src="/logocasastres.jpeg"
+                    alt="Descripción de la imagen"
+                    style={{ maxWidth: '70%', maxHeight: '70%', margin: 'auto 0' }}
+                />
                 </CDBSidebarFooter>
-                    {*/}
+                    
             </CDBSidebar>
         </div>
     );
