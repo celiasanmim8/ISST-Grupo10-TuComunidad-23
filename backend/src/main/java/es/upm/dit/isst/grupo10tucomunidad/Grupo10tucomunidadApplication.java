@@ -10,6 +10,12 @@ import org.springframework.context.annotation.Bean;
 import es.upm.dit.isst.grupo10tucomunidad.model.Noticia;
 import es.upm.dit.isst.grupo10tucomunidad.repository.NoticiaRepository;
 
+import es.upm.dit.isst.grupo10tucomunidad.model.Sugerencia;
+import es.upm.dit.isst.grupo10tucomunidad.repository.SugerenciaRepository;
+
+import es.upm.dit.isst.grupo10tucomunidad.model.Comentario;
+import es.upm.dit.isst.grupo10tucomunidad.repository.ComentarioRepository;
+
 
 
 @SpringBootApplication
@@ -59,6 +65,48 @@ public class Grupo10tucomunidadApplication {
 				LocalDateTime.now(),
 				null
 			));
+		};
+	}
+
+	@Bean
+	public CommandLineRunner initialSugerenciaData(SugerenciaRepository sugerenciaRepository) {
+		return (args) -> {
+			sugerenciaRepository.save(new Sugerencia(
+				1L,
+				"Obra para poner una rampa en las escaleras de la entrada",
+				"Debido a la edad y la situación de algunos propietarios, se plantea hacer una obra para poner una rampa, seria muy util " +
+				"para las personas con movilidad reducida y también para familias con carritos de bebes, entre otras cosas",
+				2L,
+				LocalDateTime.now()));
+
+				sugerenciaRepository.save(new Sugerencia(
+				2L,
+				"Cambio de socorrista en la piscina",
+				"Algunos propietarios nos hemos dado cuenta de que el socorrista de este año se pasa las horas con el móvil, sin hacer caso " +
+				"a lo que sucede en la piscina, además de que no llama la atención cuando los niños se tiran y algún dia puede pasar una desgracia.",
+				2L,
+				LocalDateTime.now()));
+		};
+	}	
+	
+	
+	@Bean
+	public CommandLineRunner initialComentarioData(ComentarioRepository comentarioRepository) {
+		return (args) -> {
+			comentarioRepository.save(new Comentario(null,
+			 "Me parece buena idea!",
+			 1L,
+			null));
+
+			comentarioRepository.save(new Comentario(null,
+			"Yo no lo veo necesario",
+			1L,
+		   null));
+
+		   comentarioRepository.save(new Comentario(null,
+			"A mi la verdad es que el socorrista me parece muy majo y hace bien su trabajo.",
+			2L,
+		   null));
 		};
 	}
 }
