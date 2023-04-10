@@ -9,7 +9,7 @@ const VerSugerencias = (props) => {
     const comentariolist = props.comentariolist
     const sugerenciaslist = props.sugerenciaslist
     return (
-        <Container style={{maxHeight: '100vh', overflowY: 'scroll'}}>
+        <Container>
             <Row className="my-2">
                 <Col>
                     <h2>Últimas sugerencias</h2>

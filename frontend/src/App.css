@@ -53,9 +53,8 @@
 
 .contenedor-flexbox {
   display: flex;
-  width: 100%; /*Convertimos al menú en flexbox*/
- /*Con esto le indicamos que margine todos los items que se encuentra adentro hacia la derecha e izquierda*/
-/*con esto alineamos de manera vertical*/
+  width: 100%; 
+
 }
 
 .news-title{
