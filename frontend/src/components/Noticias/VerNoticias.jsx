@@ -7,7 +7,7 @@ import { ArrowRight } from "react-bootstrap-icons";
 const VerNoticias = (props) => {
     const noticiaslist = props.noticiaslist
     return (
-        <Container>
+        <Container style={{maxHeight: '100vh', overflowY: 'scroll'}}>
             <Row className="my-2">
                 <Col>
                     <h2>Últimas noticias</h2>
