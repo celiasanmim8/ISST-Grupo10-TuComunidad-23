@@ -84,4 +84,7 @@
   flex-grow: 1;
 }
 
-
+::-webkit-scrollbar {
+  width: 0;
+  background: transparent;
+}
