@@ -7,11 +7,13 @@ import { ArrowRight } from "react-bootstrap-icons";
 const VerNoticias = (props) => {
     const noticiaslist = props.noticiaslist
     return (
-        <Container style={{maxHeight: '100vh', overflowY: 'scroll'}}>
+        <Container style={{ maxHeight: '100vh', overflowY: 'scroll' }}>
             <Row className="my-2">
                 <Col>
                     <h2>Últimas noticias</h2>
-                    <Button href="/noticias/crear">Crear nueva noticia</Button>
+                    <Link to={'/noticias/crear'}>
+                        <Button>Crear nueva noticia</Button>
+                    </Link>
                 </Col>
             </Row>
             <Row>
@@ -22,7 +24,7 @@ const VerNoticias = (props) => {
                                 <Card.Body style={{ maxWidth: '90%' }}>
                                     <Card.Title href="#">{noticiaItem.titulo}</Card.Title>
                                     <Card.Subtitle className="text-muted">
-                                        <p>Creado el {noticiaItem.fechaCreacion} </p>
+                                        <p>Creado el {noticiaItem.fechaCreacion} por Administrador</p>
                                     </Card.Subtitle>
                                     {/*}
                                     <Card.Text>{noticiaItem.descripcion}</Card.Text>

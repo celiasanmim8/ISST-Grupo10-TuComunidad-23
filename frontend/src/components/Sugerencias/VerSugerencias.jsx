@@ -9,11 +9,13 @@ const VerSugerencias = (props) => {
     const comentariolist = props.comentariolist
     const sugerenciaslist = props.sugerenciaslist
     return (
-        <Container style={{maxHeight: '100vh', overflowY: 'scroll'}}>
+        <Container style={{ maxHeight: '100vh', overflowY: 'scroll' }}>
             <Row className="my-2">
                 <Col>
                     <h2>Últimas sugerencias</h2>
-                    <Button href="/sugerencias/crear">Crear nueva sugerencia</Button>
+                    <Link to={'/sugerencias/crear'}>
+                        <Button>Crear nueva sugerencia</Button>
+                    </Link>
                 </Col>
             </Row>
 
@@ -24,7 +26,7 @@ const VerSugerencias = (props) => {
                             <Card.Body>
                                 <Card.Title href="#">{sugerenciasItem.titulo}</Card.Title>
                                 <Card.Subtitle className="text-muted">
-                                    <p>Creado el {sugerenciasItem.fechaCreacion} </p>
+                                    <p>Creado el {sugerenciasItem.fechaCreacion} por Usuario</p>
 
                                 </Card.Subtitle>
                                 <Card.Text>{sugerenciasItem.descripcion}</Card.Text>
