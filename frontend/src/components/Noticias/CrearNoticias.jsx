@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, Container, Form, Row } from 'react-bootstrap';
+import { Button, Container, Form } from 'react-bootstrap';
 import { Link, useNavigate } from "react-router-dom";
 
 const CreateNews = () => {
@@ -45,7 +45,7 @@ const CreateNews = () => {
             setTitulo('');
             setDescripcion('');
             setAdjunto(null);
-            navigate('/noticias')
+            navigate('/noticias');
         }
     };
 
@@ -77,7 +77,7 @@ const CreateNews = () => {
                     <Form.Control type="file" onChange={handleFileChange}></Form.Control>
                 </Form.Group>
 
-                <Button variant='success' type='submit' style={{ width: '7rem' }} onClick={() => window.location.href="/noticias"}>
+                <Button variant='success' type='submit' style={{ width: '7rem' }}>
                     Crear
                 </Button>{'  '}
 

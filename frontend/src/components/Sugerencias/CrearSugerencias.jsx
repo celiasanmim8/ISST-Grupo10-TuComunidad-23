@@ -49,7 +49,7 @@ const CrearSugerencias = () => {
                     <Form.Control as="textarea" rows={10} onChange={(e) => setDescripcion(e.target.value)}></Form.Control>
                 </Form.Group>
 
-                <Button variant='success' type='submit' style={{ width: '7rem' }} onClick={() => window.location.href="/sugerencias"}>
+                <Button variant='success' type='submit' style={{ width: '7rem' }}>
                     Crear
                 </Button>{'  '}
 

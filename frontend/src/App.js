@@ -1,27 +1,20 @@
 import React, { useEffect, useState } from 'react';
-import { Route, Routes, Navigate } from 'react-router-dom';
+import { Route, Routes, Navigate, useLocation } from 'react-router-dom';
 import CrearNoticias from './components/Noticias/CrearNoticias';
 import VerNoticias from './components/Noticias/VerNoticias';
 import Sidebar from './components/Noticias/Sidebar';
 import VerSugerencias from './components/Sugerencias/VerSugerencias';
 import CrearSugerencias from './components/Sugerencias/CrearSugerencias';
 import './App.css';
-import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
-import Container from 'react-bootstrap/Container';
 import VerContacto from './components/Contacto/VerContacto';
 import CrearComentario from './components/Comentarios/CrearComentario';
 import UnaNoticia from './components/Noticias/UnaNoticia';
-import VerComentario from './components/Comentarios/VerComentario';
-
-
 
 function App() {
+    const location = useLocation();
     const [noticiaslist, setNoticiaslist] = useState([]);
     const [sugerenciaslist, setSugerenciaslist] = useState([]);
     const [comentariolist, setComentariolist] = useState([]);
-
-
 
     useEffect(() => {
         const formatDate = (isoDateString) => {
@@ -93,12 +86,7 @@ function App() {
             clearInterval(intervalSuerencias);
             clearInterval(intervalComentario);
         };
-    }, []);
-
-
-
-
-
+    }, [location]);
 
     return (
         <div className='contenedor-flexbox'>

@@ -41,7 +41,7 @@ const CrearSugerencias = () => {
                     <Form.Label className='h5'>Su respuesta</Form.Label>
                     <Form.Control as="textarea" rows={2} onChange={(e) => setDescripcion(e.target.value)}></Form.Control>
                 </Form.Group>
-                <Button variant='success' type='submit' style={{ width: '7rem' }} onClick={() => window.location.href="/sugerencias"}>
+                <Button variant='success' type='submit' style={{ width: '7rem' }}>
                     Responder
                 </Button>{'  '}
                 <Link to={"/sugerencias"}>
