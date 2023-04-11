@@ -30,9 +30,6 @@ const Sidebar = () => {
                         <NavLink>
                             <CDBSidebarMenuItem icon="poll-h">Juntas</CDBSidebarMenuItem>
                         </NavLink>
-                        <NavLink>
-                            <CDBSidebarMenuItem icon="calendar">Reserva de espacios</CDBSidebarMenuItem>
-                        </NavLink>
                         <NavLink exact to="/contacto" activeClassName="activeClicked">
                             <CDBSidebarMenuItem icon="exclamation-circle">Contacto</CDBSidebarMenuItem>
                         </NavLink>
