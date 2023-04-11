@@ -13,7 +13,9 @@ const UnaNoticia = (props) => {
                 <p className="news-title"><b>{noticiaslist[position - 1].titulo}</b></p>
                 <p className="news-description">{noticiaslist[position - 1].descripcion}</p>
                 <div className="news-button">
-                    <Button href="/">Volver</Button>
+                    <Link to={'/noticias'}>
+                        <Button>Volver</Button>
+                    </Link>
                 </div>
             </Col>
         </Row>
