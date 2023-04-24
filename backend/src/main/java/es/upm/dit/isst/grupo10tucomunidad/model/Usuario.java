@@ -26,7 +26,7 @@ public class Usuario {
     private Long id;
 
     @Column(nullable = false, length = 9)
-    private int tlfNumber;
+    private String tlfNumber;
 
     @Column(nullable = false, length = 30)
     private String password;
@@ -37,7 +37,7 @@ public class Usuario {
                 inverseJoinColumns = @JoinColumn(name = "roles_id"))
     private Set<Rol> roles = new HashSet<>();
 
-    public Usuario(int tlfNumber, String password, Set<Rol> roles) {
+    public Usuario(String tlfNumber, String password, Set<Rol> roles) {
         this.tlfNumber = tlfNumber;
         this.password = password;
         this.roles = roles;
@@ -54,11 +54,11 @@ public class Usuario {
         this.id = id;
     }
 
-    public int getTlfNumber() {
+    public String getTlfNumber() {
         return tlfNumber;
     }
 
-    public void setTlfNumber(int tlfNumber) {
+    public void setTlfNumber(String tlfNumber) {
         this.tlfNumber = tlfNumber;
     }
 
