@@ -86,4 +86,32 @@ public class UserDetailsImpl implements UserDetails {
         UserDetailsImpl user = (UserDetailsImpl) o;
         return Objects.equals(id, user.id);
     }
+
+    public static long getSerialversionuid() {
+        return serialVersionUID;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getTlfNumber() {
+        return tlfNumber;
+    }
+
+    public void setTlfNumber(String tlfNumber) {
+        this.tlfNumber = tlfNumber;
+    }
+
+    public void setAuthorities(Collection<? extends GrantedAuthority> authorities) {
+        this.authorities = authorities;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
 }
