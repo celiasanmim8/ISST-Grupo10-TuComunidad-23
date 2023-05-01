@@ -26,6 +26,13 @@ class UserService {
     });
     return response.json();
   }
+  async getJuntas() {
+    const response = await fetch(API_URL + "juntas", {
+      method: "GET",
+      headers: authHeader()
+    });
+    return response.json();
+  }
 }
 
 const userServiceInstance = new UserService();

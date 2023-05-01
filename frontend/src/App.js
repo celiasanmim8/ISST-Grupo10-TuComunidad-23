@@ -5,6 +5,8 @@ import VerNoticias from './components/Noticias/VerNoticias';
 import Sidebar from './components/Noticias/Sidebar';
 import VerSugerencias from './components/Sugerencias/VerSugerencias';
 import CrearSugerencias from './components/Sugerencias/CrearSugerencias';
+import VerJuntas from './components/Juntas/VerJuntas';
+import CrearJunta from './components/Juntas/CrearJunta';
 import './App.css';
 import VerContacto from './components/Contacto/VerContacto';
 import CrearComentario from './components/Comentarios/CrearComentario';
@@ -19,6 +21,7 @@ function App() {
     const [noticiaslist, setNoticiaslist] = useState([]);
     const [sugerenciaslist, setSugerenciaslist] = useState([]);
     const [comentariolist, setComentariolist] = useState([]);
+    const [juntaslist, setJuntaslist] = useState([]);
     const user = useRef(null);
 
     useEffect(() => {
@@ -68,17 +71,32 @@ function App() {
                 });
                 setComentariolist(formattedComentarioData);
             };
+
+            const fetchJuntas = async () => {
+                const juntasData = await UserService.getJuntas();
+                // Format the date for each fetched item
+                const formattedJuntasData = juntasData.map((juntaItem) => {
+                    return {
+                        ...juntaItem,
+                        fechaCreacion: formatDate(juntaItem.fechaCreacion),
+                    };
+                });
+                setJuntaslist(formattedJuntasData);
+            };
     
             fetchNoticias();
             fetchSugerencias();
             fetchComentario();
+            fetchJuntas();
             const intervalNoticias = setInterval(fetchNoticias, 10000);
             const intervalSuerencias = setInterval(fetchSugerencias, 10000);
             const intervalComentario = setInterval(fetchComentario, 10000);
+            const intervalJuntas = setInterval(fetchJuntas, 10000);
             return () => {
                 clearInterval(intervalNoticias);
                 clearInterval(intervalSuerencias);
                 clearInterval(intervalComentario);
+                clearInterval(intervalJuntas);
             };
         }
     }, [location]);
@@ -94,6 +112,8 @@ function App() {
                     <Route path="/sugerencias" element={<VerSugerencias sugerenciaslist={sugerenciaslist} comentariolist={comentariolist} />} />
                     <Route path="/sugerencias/crear" element={<CrearSugerencias />} />
                     <Route path="/sugerencias/:sugerenciaId" element={<CrearComentario />} />
+                    <Route path="/juntas" element={<VerJuntas juntaslist={juntaslist}/>} />
+                    <Route path="/juntas/crear" element={<CrearJunta />} />
                     <Route path="/contacto" element={<VerContacto />} />
                     <Route path="/login" element={<Login location={location}/>} />
                     <Route path="/register" element={<Register/>} />
