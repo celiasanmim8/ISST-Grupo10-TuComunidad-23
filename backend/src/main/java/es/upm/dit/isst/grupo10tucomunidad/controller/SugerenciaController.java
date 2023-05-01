@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,12 +26,14 @@ public class SugerenciaController {
 
     @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("/sugerencias")
+    @PreAuthorize("hasRole('ADMIN') or hasRole('PRESIDENTE') or hasRole('VECINO')")
     List<Sugerencia> readAll() {
         return (List<Sugerencia>) sugerenciaRepository.findAll();
     }
 
     @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping("/sugerencias")
+    @PreAuthorize("hasRole('ADMIN') or hasRole('PRESIDENTE')")
     ResponseEntity<Sugerencia> create(@RequestBody Sugerencia newNSugerencia) throws URISyntaxException {
         Sugerencia res = sugerenciaRepository.save(newNSugerencia);
         return ResponseEntity.created(new URI("/sugerencias/" + res.getId())).body(res);
@@ -38,6 +41,7 @@ public class SugerenciaController {
 
     @CrossOrigin(origins = "http://localhost:3000")
     @PutMapping("/sugerencias/{id}")
+    @PreAuthorize("hasRole('ADMIN') or hasRole('PRESIDENTE')")
     ResponseEntity<Sugerencia> update(@RequestBody Sugerencia newNSugerencia, @PathVariable String id) {
         return sugerenciaRepository.findById(id).map(sugerencia -> {
             sugerenciaRepository.save(sugerencia);

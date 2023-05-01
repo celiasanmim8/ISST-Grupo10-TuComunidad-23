@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -26,12 +27,14 @@ public class ComentarioController {
 
     @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("/sugerencias/responder")
+    @PreAuthorize("hasRole('ADMIN') or hasRole('PRESIDENTE') or hasRole('VECINO')")
     List<Comentario> readAll() {
         return (List<Comentario>) comentarioRepository.findAll();
     }
 
     @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping("/sugerencias/responder")
+    @PreAuthorize("hasRole('ADMIN') or hasRole('PRESIDENTE')")
     ResponseEntity<Comentario> create(@RequestBody Comentario newComentario) throws URISyntaxException {
         Comentario res = comentarioRepository.save(newComentario);
         return ResponseEntity.created(new URI("/sugerencias/responder/")).body(res);
@@ -39,6 +42,7 @@ public class ComentarioController {
 
     @CrossOrigin(origins = "http://localhost:3000")
     @PutMapping("/sugerencias/responder")
+    @PreAuthorize("hasRole('ADMIN') or hasRole('PRESIDENTE')")
     ResponseEntity<Comentario> update(@RequestBody Comentario newComentario, @PathVariable String id) {
         return comentarioRepository.findById(id).map(comentario -> {
             comentarioRepository.save(comentario);

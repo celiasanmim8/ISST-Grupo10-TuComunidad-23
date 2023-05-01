@@ -1,19 +1,25 @@
 package es.upm.dit.isst.grupo10tucomunidad;
 
 import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.jdbc.core.JdbcTemplate;
 
 import es.upm.dit.isst.grupo10tucomunidad.model.Noticia;
+import es.upm.dit.isst.grupo10tucomunidad.model.Rol;
 import es.upm.dit.isst.grupo10tucomunidad.repository.NoticiaRepository;
-
+import es.upm.dit.isst.grupo10tucomunidad.repository.RolRepository;
 import es.upm.dit.isst.grupo10tucomunidad.model.Sugerencia;
+import es.upm.dit.isst.grupo10tucomunidad.model.Usuario;
 import es.upm.dit.isst.grupo10tucomunidad.repository.SugerenciaRepository;
-
+import es.upm.dit.isst.grupo10tucomunidad.repository.UsuarioRepository;
 import es.upm.dit.isst.grupo10tucomunidad.model.Comentario;
+import es.upm.dit.isst.grupo10tucomunidad.model.ERol;
 import es.upm.dit.isst.grupo10tucomunidad.repository.ComentarioRepository;
 
 @SpringBootApplication
@@ -122,6 +128,31 @@ public class Grupo10tucomunidadApplication {
 					"A mi la verdad es que el socorrista me parece muy majo y hace bien su trabajo.",
 					4L,
 					null));
+		};
+	}
+
+	@Bean
+	public CommandLineRunner initialRolData(RolRepository rolRepository) {
+		return (args) -> {
+			rolRepository.save(new Rol(ERol.ROLE_ADMIN));
+			rolRepository.save(new Rol(ERol.ROLE_PRESIDENTE));
+			rolRepository.save(new Rol(ERol.ROLE_VECINO));
+		};
+	}
+
+	@Bean
+	public CommandLineRunner initialUserData(JdbcTemplate jdbcTemplate) {
+		return (args) -> {
+			String[] instructionArr = {
+				"INSERT INTO usuarios (tlf_number, password) VALUES ('123456789', '$2a$12$oH/Ci..a5Tz8pjNhZesP3..BUIvGy4SU89M4JSOpbo8j7w.04W.FG')",
+				"SELECT @userId := id FROM usuarios WHERE tlf_number = '123456789' ORDER BY id DESC LIMIT 1",
+				"SELECT @roleId1 := id FROM roles WHERE nombre = 0",
+				"SELECT @roleId2 := id FROM roles WHERE nombre = 1",
+				"INSERT INTO usuarios_roles (usuarios_id, roles_id) VALUES (@userId, @roleId1)",
+				"INSERT INTO usuarios_roles (usuarios_id, roles_id) VALUES (@userId, @roleId2)"
+			};
+			for (String sqlInstruction : instructionArr) 
+				jdbcTemplate.execute(sqlInstruction);
 		};
 	}
 }

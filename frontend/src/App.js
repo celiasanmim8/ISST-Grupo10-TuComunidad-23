@@ -9,88 +9,83 @@ import './App.css';
 import VerContacto from './components/Contacto/VerContacto';
 import CrearComentario from './components/Comentarios/CrearComentario';
 import UnaNoticia from './components/Noticias/UnaNoticia';
+import Login from './components/Login/Login';
+import Register from './components/Login/Register';
+import UserService from './services/user.service';
+import { useRef } from 'react';
 
 function App() {
     const location = useLocation();
     const [noticiaslist, setNoticiaslist] = useState([]);
     const [sugerenciaslist, setSugerenciaslist] = useState([]);
     const [comentariolist, setComentariolist] = useState([]);
+    const user = useRef(null);
 
     useEffect(() => {
-        const formatDate = (isoDateString) => {
-            const date = new Date(isoDateString);
-            const day = String(date.getDate()).padStart(2, '0');
-            const month = String(date.getMonth() + 1).padStart(2, '0');
-            const year = date.getFullYear();
-            return `${day}-${month}-${year}`;
-        };
+        if (!user.current || (JSON.parse(localStorage.getItem('user').token !== user.current.token))) {
+            user.current = JSON.parse(localStorage.getItem('user'));
+        }
 
-        const fetchNoticias = async () => {
-            const response = await fetch('http://localhost:8080/noticias');
-            const noticiasData = await response.json();
-
-            // Format the date for each fetched item
-            const formattedNoticiasData = noticiasData.map((noticiaItem) => {
-                return {
-                    ...noticiaItem,
-                    fechaCreacion: formatDate(noticiaItem.fechaCreacion),
-                };
-            });
-
-            setNoticiaslist(formattedNoticiasData);
-        };
-
-        const fetchSugerencias = async () => {
-            const response = await fetch('http://localhost:8080/sugerencias');
-            const sugerenciasData = await response.json();
-
-            // Format the date for each fetched item
-            const formattedSugerenciasData = sugerenciasData.map((sugerenciaItem) => {
-                return {
-                    ...sugerenciaItem,
-                    fechaCreacion: formatDate(sugerenciaItem.fechaCreacion),
-                };
-            });
-
-            setSugerenciaslist(formattedSugerenciasData);
-        };
-
-
-
-        const fetchComentario = async () => {
-            const response = await fetch('http://localhost:8080/sugerencias/responder');
-            const comentarioData = await response.json();
-
-            // Format the date for each fetched item
-            const formattedComentarioData = comentarioData.map((comenatrioItem) => {
-                return {
-                    ...comenatrioItem
-                };
-            });
-
-            setComentariolist(formattedComentarioData);
-        };
-
-        fetchNoticias();
-
-        fetchSugerencias();
-
-        fetchComentario();
-
-        /* Para refrescar periódicamente */
-        const intervalNoticias = setInterval(fetchNoticias, 10000);
-        const intervalSuerencias = setInterval(fetchSugerencias, 10000);
-        const intervalComentario = setInterval(fetchComentario, 10000);
-        return () => {
-            clearInterval(intervalNoticias);
-            clearInterval(intervalSuerencias);
-            clearInterval(intervalComentario);
-        };
+        if (user.current && user.current.token) {
+            const formatDate = (isoDateString) => {
+                const date = new Date(isoDateString);
+                const day = String(date.getDate()).padStart(2, '0');
+                const month = String(date.getMonth() + 1).padStart(2, '0');
+                const year = date.getFullYear();
+                return `${day}-${month}-${year}`;
+            };
+    
+            const fetchNoticias = async () => {
+                const noticiasData = await UserService.getNoticias();
+                const formattedNoticiasData = noticiasData.map((noticiaItem) => {
+                    return {
+                        ...noticiaItem,
+                        fechaCreacion: formatDate(noticiaItem.fechaCreacion),
+                    };
+                });
+                setNoticiaslist(formattedNoticiasData);
+            };
+    
+            const fetchSugerencias = async () => {
+                const sugerenciasData = await UserService.getSugerencias();
+                // Format the date for each fetched item
+                const formattedSugerenciasData = sugerenciasData.map((sugerenciaItem) => {
+                    return {
+                        ...sugerenciaItem,
+                        fechaCreacion: formatDate(sugerenciaItem.fechaCreacion),
+                    };
+                });
+                setSugerenciaslist(formattedSugerenciasData);
+            };
+    
+            const fetchComentario = async () => {
+                const comentarioData = await UserService.getComentarios();
+                // Format the date for each fetched item
+                const formattedComentarioData = comentarioData.map((comenatrioItem) => {
+                    return {
+                        ...comenatrioItem
+                    };
+                });
+                setComentariolist(formattedComentarioData);
+            };
+    
+            fetchNoticias();
+            fetchSugerencias();
+            fetchComentario();
+            const intervalNoticias = setInterval(fetchNoticias, 10000);
+            const intervalSuerencias = setInterval(fetchSugerencias, 10000);
+            const intervalComentario = setInterval(fetchComentario, 10000);
+            return () => {
+                clearInterval(intervalNoticias);
+                clearInterval(intervalSuerencias);
+                clearInterval(intervalComentario);
+            };
+        }
     }, [location]);
 
     return (
         <div className='contenedor-flexbox'>
-                <Sidebar/>
+                {user.current && user.current.token && <Sidebar/>}
                 <Routes>
                     <Route path="/" element={<Navigate replace to="/noticias" />}></Route>
                     <Route path="/noticias" element={<VerNoticias noticiaslist={noticiaslist} />} />
@@ -100,6 +95,9 @@ function App() {
                     <Route path="/sugerencias/crear" element={<CrearSugerencias />} />
                     <Route path="/sugerencias/:sugerenciaId" element={<CrearComentario />} />
                     <Route path="/contacto" element={<VerContacto />} />
+                    <Route path="/login" element={<Login location={location}/>} />
+                    <Route path="/register" element={<Register/>} />
+                    <Route path="/*" element={<Navigate to="/noticias"/>} />
                 </Routes>
         </div>
     );

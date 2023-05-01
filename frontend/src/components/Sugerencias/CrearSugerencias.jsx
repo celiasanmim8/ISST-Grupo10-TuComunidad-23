@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import { Button, Container, Form } from 'react-bootstrap';
 import { Link, useNavigate } from "react-router-dom";
+import useRequireAuth from '../Login/useRequireAuth';
 
 const CrearSugerencias = () => {
+    useRequireAuth();
     const [titulo, setTitulo] = useState('');
     const [descripcion, setDescripcion] = useState('');
     const navigate = useNavigate();
-
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -21,7 +22,7 @@ const CrearSugerencias = () => {
 
             const requestOptions = {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
+                headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + JSON.parse(localStorage.getItem('user')).token},
                 body: JSON.stringify({
                     ...sugerenciasItem
                 }),

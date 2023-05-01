@@ -34,7 +34,7 @@ const CreateNews = () => {
 
             const requestOptions = {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
+                headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + JSON.parse(localStorage.getItem('user')).token},
                 body: JSON.stringify({
                     ...newsItem,
                     adjunto: adjuntoBytes ? Array.from(adjuntoBytes) : null,
@@ -42,6 +42,7 @@ const CreateNews = () => {
             };
 
             await fetch('http://localhost:8080/noticias', requestOptions);
+
             setTitulo('');
             setDescripcion('');
             setAdjunto(null);

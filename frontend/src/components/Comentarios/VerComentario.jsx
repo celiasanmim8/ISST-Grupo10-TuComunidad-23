@@ -3,12 +3,15 @@ import { Container } from "react-bootstrap";
 
 import Card from 'react-bootstrap/Card';
 
+import useRequireAuth from '../Login/useRequireAuth';
+
 
 const VerComentario = (props) => {
+    useRequireAuth();
     const comentariosList = props.comentariolist;
     const id = props.sugerenciaId;
     return (
-        <div class="contenedor-flexbox">
+        <div className="contenedor-flexbox">
             <Container>
                 {comentariosList.map((comentarioItem) => (
                     <div>

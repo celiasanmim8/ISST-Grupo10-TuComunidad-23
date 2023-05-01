@@ -3,9 +3,12 @@ import { Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Card from 'react-bootstrap/Card';
 import { ArrowRight } from "react-bootstrap-icons";
+import useRequireAuth from "../Login/useRequireAuth";
 
 const VerNoticias = (props) => {
-    const noticiaslist = props.noticiaslist
+    useRequireAuth();
+    const noticiaslist = props.noticiaslist;
+
     return (
         <Container style={{ maxHeight: '100vh', overflowY: 'scroll' }}>
             <Row className="my-2">
@@ -27,8 +30,8 @@ const VerNoticias = (props) => {
                                         <p>Creado el {noticiaItem.fechaCreacion} por Administrador</p>
                                     </Card.Subtitle>
                                     {/*}
-                                    <Card.Text>{noticiaItem.descripcion}</Card.Text>
-                                    {*/}
+                                        <Card.Text>{noticiaItem.descripcion}</Card.Text>
+                                        {*/}
                                 </Card.Body>
                                 <div className="arrow" style={{
                                     position: 'absolute',

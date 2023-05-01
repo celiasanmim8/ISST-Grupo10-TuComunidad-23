@@ -3,9 +3,10 @@ import { Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Card from 'react-bootstrap/Card';
 import VerComentario from "../Comentarios/VerComentario";
-
+import useRequireAuth from '../Login/useRequireAuth';
 
 const VerSugerencias = (props) => {
+    useRequireAuth();
     const comentariolist = props.comentariolist
     const sugerenciaslist = props.sugerenciaslist
     return (

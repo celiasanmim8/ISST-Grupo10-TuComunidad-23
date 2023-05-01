@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,21 +24,24 @@ public class NoticiaController {
         this.noticiaRepository = n;
     }
 
-    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("/noticias")
+    @CrossOrigin(origins = "http://localhost:3000")
+    @PreAuthorize("hasRole('ADMIN') or hasRole('PRESIDENTE') or hasRole('VECINO')")
     List<Noticia> readAll() {
         return (List<Noticia>) noticiaRepository.findAll();
     }
 
-    @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping("/noticias")
+    @CrossOrigin(origins = "http://localhost:3000")
+    @PreAuthorize("hasRole('ADMIN') or hasRole('PRESIDENTE')")
     ResponseEntity<Noticia> create(@RequestBody Noticia newNoticia) throws URISyntaxException {
         Noticia res = noticiaRepository.save(newNoticia);
         return ResponseEntity.created(new URI("/noticias/" + res.getId())).body(res);
     }
 
-    @CrossOrigin(origins = "http://localhost:3000")
     @PutMapping("/noticias/{id}")
+    @CrossOrigin(origins = "http://localhost:3000")
+    @PreAuthorize("hasRole('ADMIN') or hasRole('PRESIDENTE')")
     ResponseEntity<Noticia> update(@RequestBody Noticia newNoticia, @PathVariable String id) {
         return noticiaRepository.findById(id).map(noticia -> {
             noticiaRepository.save(noticia);

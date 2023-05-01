@@ -28,7 +28,7 @@ public class Usuario {
     @Column(nullable = false, length = 9)
     private String tlfNumber;
 
-    @Column(nullable = false, length = 30)
+    @Column(nullable = false, length = 100)
     private String password;
 
     @ManyToMany(fetch = FetchType.LAZY)
@@ -36,6 +36,12 @@ public class Usuario {
                 joinColumns = @JoinColumn(name = "usuarios_id"),
                 inverseJoinColumns = @JoinColumn(name = "roles_id"))
     private Set<Rol> roles = new HashSet<>();
+
+    public Usuario(String tlfNumber, String password, Set<Rol> roles) {
+        this.tlfNumber = tlfNumber;
+        this.password = password;
+        this.roles = roles;
+    }
 
     public Usuario(String tlfNumber, String password) {
         this.tlfNumber = tlfNumber;

@@ -10,7 +10,6 @@ public class SignupRequest {
     @Size(min = 9, max = 9)
     private String tlfNumber;
 
-    @NotBlank
     private Set<String> rol;
 
     @NotBlank

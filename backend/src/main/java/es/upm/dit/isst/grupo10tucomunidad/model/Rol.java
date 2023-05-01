@@ -15,8 +15,7 @@ public class Rol {
     
     private ERol nombre;
 
-    public Rol(Long id, ERol nombre) {
-        this.id = id;
+    public Rol(ERol nombre) {
         this.nombre = nombre;
     }
 
