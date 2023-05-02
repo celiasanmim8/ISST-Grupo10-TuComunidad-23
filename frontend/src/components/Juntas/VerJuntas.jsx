@@ -3,10 +3,12 @@ import { Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Card from 'react-bootstrap/Card';
 import useRequireAuth from '../Login/useRequireAuth';
+import VerVoto from '../Votaciones/VerVoto';
 
 const VerJuntas = (props) => {
     useRequireAuth();
     const juntaslist = props.juntaslist
+    const votoslist = props.votoslist
     return (
         <Container style={{ maxHeight: '100vh', overflowY: 'scroll' }}>
             <Row className="my-2">
@@ -29,6 +31,10 @@ const VerJuntas = (props) => {
                                 </Card.Subtitle>
                                 <Card.Text>{juntaItem.descripcion}</Card.Text>
                             </Card.Body>
+                            <Link to={`/juntas/${juntaItem.id}`}>
+                                    <Button variant='success' type='submit' style={{ width: '7rem' }}>Votar</Button>
+                                </Link>
+                            <VerVoto votoslist={votoslist} juntaslist={juntaslist} juntaId={juntaItem.id} />
                         </Card>
                     </Col>
                 </Row>

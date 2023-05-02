@@ -33,6 +33,13 @@ class UserService {
     });
     return response.json();
   }
+  async getVotos() {
+    const response = await fetch(API_URL + "juntas/votos", {
+      method: "GET",
+      headers: authHeader()
+    });
+    return response.json();
+  }
 }
 
 const userServiceInstance = new UserService();

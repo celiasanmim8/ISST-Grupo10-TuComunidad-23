@@ -1,6 +1,5 @@
 package es.upm.dit.isst.grupo10tucomunidad.controller;
 
-
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
@@ -15,39 +14,41 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-import es.upm.dit.isst.grupo10tucomunidad.model.Junta;
-import es.upm.dit.isst.grupo10tucomunidad.repository.JuntaRepository;
+
+import es.upm.dit.isst.grupo10tucomunidad.model.Votacion;
+import es.upm.dit.isst.grupo10tucomunidad.repository.VotacionRepository;
 
 @RestController
-public class JuntaController {
-    private final JuntaRepository juntaRepository;
-    public JuntaController(JuntaRepository n) {
-        this.juntaRepository = n;
+public class VotacionController {
+    private final VotacionRepository votacionRepository;
+    public VotacionController(VotacionRepository n) {
+        this.votacionRepository = n;
     }
 
     @CrossOrigin(origins = "http://localhost:3000")
-    @GetMapping("/juntas")
+    @GetMapping("/juntas/votos")
     @PreAuthorize("hasRole('ADMIN') or hasRole('PRESIDENTE') or hasRole('VECINO')")
-    List<Junta> readAll() {
-        return (List<Junta>) juntaRepository.findAll();
+    List<Votacion> readAll() {
+        return (List<Votacion>) votacionRepository.findAll();
     }
 
     @CrossOrigin(origins = "http://localhost:3000")
-    @PostMapping("/juntas")
+    @PostMapping("/juntas/votos")
     @PreAuthorize("hasRole('ADMIN') or hasRole('PRESIDENTE')")
-    ResponseEntity<Junta> create(@RequestBody Junta newJunta) throws URISyntaxException {
-        Junta res = juntaRepository.save(newJunta);
-        return ResponseEntity.created(new URI("/juntas/" + res.getId())).body(res);
+    ResponseEntity<Votacion> create(@RequestBody Votacion newVotacion) throws URISyntaxException {
+        Votacion res = votacionRepository.save(newVotacion);
+        return ResponseEntity.created(new URI("/juntas/votos/")).body(res);
     }
 
     @CrossOrigin(origins = "http://localhost:3000")
-    @PutMapping("/juntas/{id}")
+    @PutMapping("/juntas/votos")
     @PreAuthorize("hasRole('ADMIN') or hasRole('PRESIDENTE')")
-    ResponseEntity<Junta> update(@RequestBody Junta newJunta, @PathVariable String JuntaID) {
-        return juntaRepository.findById(JuntaID).map(junta -> {
-            juntaRepository.save(junta);
-            return ResponseEntity.ok().body(junta);
-        }).orElse(new ResponseEntity<Junta>(HttpStatus.NOT_FOUND));
+    ResponseEntity<Votacion> update(@RequestBody Votacion newVotacion, @PathVariable String id) {
+        return votacionRepository.findById(id).map(votacion -> {
+            votacionRepository.save(votacion);
+            return ResponseEntity.ok().body(votacion);
+        }).orElse(new ResponseEntity<Votacion>(HttpStatus.NOT_FOUND));
     }
-}
+}   
+
 

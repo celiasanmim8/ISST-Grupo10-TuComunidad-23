@@ -7,6 +7,7 @@ import VerSugerencias from './components/Sugerencias/VerSugerencias';
 import CrearSugerencias from './components/Sugerencias/CrearSugerencias';
 import VerJuntas from './components/Juntas/VerJuntas';
 import CrearJunta from './components/Juntas/CrearJunta';
+import Votar from './components/Votaciones/Votar';
 import './App.css';
 import VerContacto from './components/Contacto/VerContacto';
 import CrearComentario from './components/Comentarios/CrearComentario';
@@ -22,6 +23,7 @@ function App() {
     const [sugerenciaslist, setSugerenciaslist] = useState([]);
     const [comentariolist, setComentariolist] = useState([]);
     const [juntaslist, setJuntaslist] = useState([]);
+    const [votoslist, setVotosList] = useState([]);
     const user = useRef(null);
 
     useEffect(() => {
@@ -83,20 +85,32 @@ function App() {
                 });
                 setJuntaslist(formattedJuntasData);
             };
-    
+            const fetchVotos = async () => {
+                const votosData = await UserService.getVotos();
+                // Format the date for each fetched item
+                const formattedVotosData = votosData.map((votoItem) => {
+                    return {
+                        ...votoItem
+                    };
+                });
+                setVotosList(formattedVotosData);
+            };
             fetchNoticias();
             fetchSugerencias();
             fetchComentario();
             fetchJuntas();
+            fetchVotos();
             const intervalNoticias = setInterval(fetchNoticias, 10000);
             const intervalSuerencias = setInterval(fetchSugerencias, 10000);
             const intervalComentario = setInterval(fetchComentario, 10000);
             const intervalJuntas = setInterval(fetchJuntas, 10000);
+            const intervalVotos = setInterval(fetchVotos, 10000);
             return () => {
                 clearInterval(intervalNoticias);
                 clearInterval(intervalSuerencias);
                 clearInterval(intervalComentario);
                 clearInterval(intervalJuntas);
+                clearInterval(intervalVotos);
             };
         }
     }, [location]);
@@ -109,11 +123,15 @@ function App() {
                     <Route path="/noticias" element={<VerNoticias noticiaslist={noticiaslist} />} />
                     <Route path="/noticias/:noticiaId" element={<UnaNoticia noticiaslist={noticiaslist} />} />
                     <Route path="/noticias/crear" element={<CrearNoticias />} />
+                  
                     <Route path="/sugerencias" element={<VerSugerencias sugerenciaslist={sugerenciaslist} comentariolist={comentariolist} />} />
                     <Route path="/sugerencias/crear" element={<CrearSugerencias />} />
                     <Route path="/sugerencias/:sugerenciaId" element={<CrearComentario />} />
-                    <Route path="/juntas" element={<VerJuntas juntaslist={juntaslist}/>} />
+                    
+                    <Route path="/juntas" element={<VerJuntas juntaslist={juntaslist} votoslist={votoslist}   />} />
                     <Route path="/juntas/crear" element={<CrearJunta />} />
+                    <Route path="/juntas/:juntaId" element={<Votar />} />
+                   
                     <Route path="/contacto" element={<VerContacto />} />
                     <Route path="/login" element={<Login location={location}/>} />
                     <Route path="/register" element={<Register/>} />

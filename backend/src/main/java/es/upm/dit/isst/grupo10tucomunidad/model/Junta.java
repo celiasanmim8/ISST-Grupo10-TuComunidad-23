@@ -11,15 +11,15 @@ import javax.persistence.Id;
 public class Junta {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long juntaID;
+    private Long id;
     private String titulo;
     private String descripcion;
     private LocalDateTime fechaCreacion;
 
     public Junta() {
     }
-    public Junta(long juntaID, LocalDateTime fechaCreacion, String titulo, String descripcion) {
-        this.juntaID = juntaID;
+    public Junta(long id, LocalDateTime fechaCreacion, String titulo, String descripcion) {
+        this.id = id;
         this.fechaCreacion = fechaCreacion;
         this.titulo = titulo;
         this.descripcion = descripcion;
@@ -43,10 +43,10 @@ public class Junta {
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
-    public Long getJuntaID() {
-        return juntaID;
+    public Long getId() {
+        return id;
     }
-    public void setJuntaID(Long juntaID) {
-        this.juntaID = juntaID;
+    public void setJuntaID(Long id) {
+        this.id = id;
     }
 }
