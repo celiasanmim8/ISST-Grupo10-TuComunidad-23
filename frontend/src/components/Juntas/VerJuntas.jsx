@@ -30,7 +30,7 @@ const VerJuntas = (props) => {
                                     <p>Creado el {juntaItem.fechaCreacion} por Usuario</p>
                                 </Card.Subtitle>
                                 <Card.Text>{juntaItem.descripcion}</Card.Text>
-                            </Card.Body>
+   
                                 { juntaItem.votacionActiva == '1' ? (
                                     <Link to={`/juntas/${juntaItem.id}`}>
                                     <Button variant='success' type='submit' style={{ width: '7rem' }}>Votar</Button>
@@ -38,6 +38,7 @@ const VerJuntas = (props) => {
                                 ) : (
                                     <p className="text-muted mb-0">Votación no activa</p>
                                 )}
+                            </Card.Body>
                             <VerVoto votoslist={votoslist} juntaslist={juntaslist} juntaId={juntaItem.id} />
                         </Card>
                     </Col>
