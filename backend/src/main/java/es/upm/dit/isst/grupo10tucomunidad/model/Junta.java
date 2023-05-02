@@ -15,16 +15,17 @@ public class Junta {
     private String titulo;
     private String descripcion;
     private LocalDateTime fechaCreacion;
+    private Long votacionActiva;
 
-    public Junta() {
-    }
-    public Junta(long id, LocalDateTime fechaCreacion, String titulo, String descripcion) {
+    public Junta(Long id, String titulo, String descripcion, LocalDateTime fechaCreacion, Long votacionActiva) {
         this.id = id;
-        this.fechaCreacion = fechaCreacion;
         this.titulo = titulo;
         this.descripcion = descripcion;
+        this.fechaCreacion = fechaCreacion;
+        this.votacionActiva = votacionActiva;
     }
-
+    public Junta() {
+    }
     public LocalDateTime getFechaCreacion() {
         return fechaCreacion;
     }
@@ -48,5 +49,11 @@ public class Junta {
     }
     public void setJuntaID(Long id) {
         this.id = id;
+    }
+    public Long getVotacionActiva() {
+        return votacionActiva;
+    }
+    public void setVotacionActiva(Long votacionActiva) {
+        this.votacionActiva = votacionActiva;
     }
 }
