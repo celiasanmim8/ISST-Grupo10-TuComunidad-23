@@ -64,60 +64,81 @@ const Login = () => {
     };
 
     return (
-        <div className="col-md-3">
-            <div className="card card-container">
-                <img
-                    src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
-                    alt="profile-img"
-                    className="profile-img-card"
-                />
-
-                <Form onSubmit={handleLogin} ref={form}>
-                    <div className="form-group">
-                        <label htmlFor="username">Username</label>
-                        <Input
-                            type="text"
-                            className="form-control"
-                            name="username"
-                            value={username}
-                            onChange={onChangeUsername}
-                            validations={[required]}
-                        />
-                    </div>
-
-                    <div className="form-group">
-                        <label htmlFor="password">Password</label>
-                        <Input
-                            type="password"
-                            className="form-control"
-                            name="password"
-                            value={password}
-                            onChange={onChangePassword}
-                            validations={[required]}
-                        />
-                    </div>
-
-                    <div className="form-group">
-                        <button className="btn btn-primary btn-block" disabled={loading}>
-                            {loading && (
-                                <span className="spinner-border spinner-border-sm"></span>
-                            )}
-                            <span>Login</span>
-                        </button>
-                    </div>
-
-                    {message && (
-                        <div className="form-group">
-                            <div className="alert alert-danger" role="alert">
-                                {message}
-                            </div>
-                        </div>
-                    )}
-                    <CheckButton style={{ display: "none" }} ref={checkBtn} />
-                </Form>
+        <div
+          className="d-flex flex-column align-items-center justify-content-center"
+          style={{
+            background: "linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('/fondo-back.jpg')",
+            backgroundPosition: "center",
+            backgroundSize: "cover",
+            height: "100vh",
+            width: "100vw",
+            position: "relative"
+          }}
+        >
+          <div className="wrapper" style={{ marginTop: '50px', textAlign: 'center', zIndex: 1 }}>
+            <div className="title-image mb-4">
+              <h2 style={{ color: 'white' }}>¡Bienvenido a TuComunidad!</h2>
             </div>
+            <div className="card" style={{ zIndex: 1, backgroundColor: "black" }}>
+              <div className="card-body">
+                <div className="row align-items-center">
+                  <div className="col-md-6">
+                    <img
+                      src="/logocasastres.jpeg"
+                      alt="profile-img"
+                      className="profile-img-card"
+                      style={{ maxWidth: '50%', maxHeight: '50%', margin: 'auto 0', borderRadius: '50%' }}
+                    />
+                  </div>
+                  <div className="col-md-6">
+                    <Form onSubmit={handleLogin} ref={form}>
+                      <div className="form-group">
+                        <label htmlFor="username" style={{ color: 'white' }}>Username</label>
+                        <Input
+                          type="text"
+                          className="form-control"
+                          name="username"
+                          value={username}
+                          onChange={onChangeUsername}
+                          validations={[required]}
+                        />
+                      </div>
+      
+                      <div className="form-group">
+                        <label htmlFor="password" style={{ color: 'white' }}>Password</label>
+                        <Input
+                          type="password"
+                          className="form-control"
+                          name="password"
+                          value={password}
+                          onChange={onChangePassword}
+                          validations={[required]}
+                        />
+                      </div>
+      
+                      <div className="form-group">
+                        <button className="btn btn-primary btn-block" disabled={loading} style={{ marginTop: '10px' }}>
+                          {loading && <span className="spinner-border spinner-border-sm"></span>}
+                          <span>Login</span>
+                        </button>
+                      </div>
+      
+                      {message && (
+                        <div className="form-group">
+                          <div className="alert alert-danger" role="alert">
+                            {message}
+                          </div>
+                        </div>
+                      )}
+                      <CheckButton style={{ display: "none" }} ref={checkBtn} />
+                    </Form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-    );
+      );
 };
 
 export default Login;
