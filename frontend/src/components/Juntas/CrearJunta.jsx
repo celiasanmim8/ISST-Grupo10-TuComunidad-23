@@ -51,7 +51,7 @@ const CrearJunta = () => {
                     <Form.Control as="textarea" rows={10} onChange={(e) => setDescripcion(e.target.value)}></Form.Control>
                 </Form.Group>
                 <select  onChange={(e) => setvotacionActiva(e.target.value)} className="form-select mb-3">
-                    <option value="">¿Quiere activar la votación?</option>
+                    <option value="">¿Quiere activar la votación? Por defecto será activa</option>
                     <option value="1">Si</option>
                     <option value="0">No</option>
                 </select>
