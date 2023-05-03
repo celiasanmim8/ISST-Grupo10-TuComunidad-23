@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
@@ -36,6 +37,12 @@ public class Usuario {
                 joinColumns = @JoinColumn(name = "usuarios_id"),
                 inverseJoinColumns = @JoinColumn(name = "roles_id"))
     private Set<Rol> roles = new HashSet<>();
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinTable( name = "usuarios_datos",
+                joinColumns = @JoinColumn(name = "usuarios_id"),
+                inverseJoinColumns = @JoinColumn(name = "datosvecino_id"))
+    private DatosVecino datosVecino;
 
     public Usuario(String tlfNumber, String password, Set<Rol> roles) {
         this.tlfNumber = tlfNumber;

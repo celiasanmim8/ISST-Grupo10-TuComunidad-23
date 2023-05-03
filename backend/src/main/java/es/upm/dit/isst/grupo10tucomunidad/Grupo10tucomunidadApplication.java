@@ -19,8 +19,10 @@ import es.upm.dit.isst.grupo10tucomunidad.model.Usuario;
 import es.upm.dit.isst.grupo10tucomunidad.repository.SugerenciaRepository;
 import es.upm.dit.isst.grupo10tucomunidad.repository.UsuarioRepository;
 import es.upm.dit.isst.grupo10tucomunidad.model.Comentario;
+import es.upm.dit.isst.grupo10tucomunidad.model.DatosVecino;
 import es.upm.dit.isst.grupo10tucomunidad.model.ERol;
 import es.upm.dit.isst.grupo10tucomunidad.repository.ComentarioRepository;
+import es.upm.dit.isst.grupo10tucomunidad.repository.DatosVecinoRepository;
 
 @SpringBootApplication
 public class Grupo10tucomunidadApplication {
@@ -132,6 +134,21 @@ public class Grupo10tucomunidadApplication {
 	}
 
 	@Bean
+	public CommandLineRunner initialUsuarioData(UsuarioRepository usuarioRespository) {
+		return (args) -> {
+			usuarioRespository.save(new Usuario(
+				"123456789", 
+				"$2a$12$oH/Ci..a5Tz8pjNhZesP3..BUIvGy4SU89M4JSOpbo8j7w.04W.FG"));
+			usuarioRespository.save(new Usuario(
+				"695947299", 
+				"$2a$12$oH/Ci..a5Tz8pjNhZesP3..BUIvGy4SU89M4JSOpbo8j7w.04W.FG"));
+			usuarioRespository.save(new Usuario(
+				"682586167", 
+				"$2a$12$oH/Ci..a5Tz8pjNhZesP3..BUIvGy4SU89M4JSOpbo8j7w.04W.FG"));	
+		};
+	}
+
+	@Bean
 	public CommandLineRunner initialRolData(RolRepository rolRepository) {
 		return (args) -> {
 			rolRepository.save(new Rol(ERol.ROLE_ADMIN));
@@ -141,15 +158,49 @@ public class Grupo10tucomunidadApplication {
 	}
 
 	@Bean
+	public CommandLineRunner initialDatosVecinoData(DatosVecinoRepository datosVecinoRepository) {
+		return (args) -> {
+			datosVecinoRepository.save(new DatosVecino(
+				4, 
+				"A", 
+				"38347413L"));
+			datosVecinoRepository.save(new DatosVecino(
+				3, 
+				"B", 
+				"86904624K"));
+			datosVecinoRepository.save(new DatosVecino(
+				5, 
+				"C", 
+				"41410277L"));								
+		};
+	}
+
+	@Bean
 	public CommandLineRunner initialUserData(JdbcTemplate jdbcTemplate) {
 		return (args) -> {
 			String[] instructionArr = {
-				"INSERT INTO usuarios (tlf_number, password) VALUES ('123456789', '$2a$12$oH/Ci..a5Tz8pjNhZesP3..BUIvGy4SU89M4JSOpbo8j7w.04W.FG')",
+				// ADMIN
 				"SELECT @userId := id FROM usuarios WHERE tlf_number = '123456789' ORDER BY id DESC LIMIT 1",
+				"SELECT @roleId1 := id FROM roles WHERE nombre = 0",
+				"INSERT INTO usuarios_roles (usuarios_id, roles_id) VALUES (@userId, @roleId1)",
+				"SELECT @datosvecinoId := id FROM datosvecino WHERE dni = '38347413L'",
+				"INSERT INTO usuarios_datos (usuarios_id, datosvecino_id) VALUES (@userId, @datosvecinoId)",
+
+				// PRESIVECINO
+				"SELECT @userId := id FROM usuarios WHERE tlf_number = '695947299' ORDER BY id DESC LIMIT 1",
 				"SELECT @roleId1 := id FROM roles WHERE nombre = 0",
 				"SELECT @roleId2 := id FROM roles WHERE nombre = 1",
 				"INSERT INTO usuarios_roles (usuarios_id, roles_id) VALUES (@userId, @roleId1)",
-				"INSERT INTO usuarios_roles (usuarios_id, roles_id) VALUES (@userId, @roleId2)"
+				"INSERT INTO usuarios_roles (usuarios_id, roles_id) VALUES (@userId, @roleId2)",
+				"SELECT @datosvecinoId := id FROM datosvecino WHERE dni = '86904624K'",
+				"INSERT INTO usuarios_datos (usuarios_id, datosvecino_id) VALUES (@userId, @datosvecinoId)",
+
+				// VECINO
+				"SELECT @userId := id FROM usuarios WHERE tlf_number = '682586167' ORDER BY id DESC LIMIT 1",
+				"SELECT @roleId1 := id FROM roles WHERE nombre = 2",
+				"INSERT INTO usuarios_roles (usuarios_id, roles_id) VALUES (@userId, @roleId1)",
+				"SELECT @datosvecinoId := id FROM datosvecino WHERE dni = '41410277L'",
+				"INSERT INTO usuarios_datos (usuarios_id, datosvecino_id) VALUES (@userId, @datosvecinoId)"
 			};
 			for (String sqlInstruction : instructionArr) 
 				jdbcTemplate.execute(sqlInstruction);
