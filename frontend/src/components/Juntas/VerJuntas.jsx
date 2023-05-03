@@ -21,8 +21,8 @@ const VerJuntas = (props) => {
             </Row>
 
             {juntaslist.slice().reverse().map((juntaItem) => (
-                <Row className="my-2">
-                    <Col key={juntaItem.id}>
+                <Row className="my-2" key={juntaItem.id}>
+                    <Col>
                         <Card>
                             <Card.Body>
                                 <Card.Title href="#">{juntaItem.titulo}</Card.Title>
@@ -31,7 +31,7 @@ const VerJuntas = (props) => {
                                 </Card.Subtitle>
                                 <Card.Text>{juntaItem.descripcion}</Card.Text>
                                 {}
-                                { juntaItem.votacionActiva == '1' ? (
+                                { juntaItem.votacionActiva === '1' ? (
                                     <Link to={`/juntas/${juntaItem.id}`}>
                                     <Button variant='success' type='submit' style={{ width: '7rem' }}>Votar</Button>
                                     </Link>

@@ -14,10 +14,10 @@ const VerComentario = (props) => {
         <div className="contenedor-flexbox">
             <Container>
                 {comentariosList.map((comentarioItem) => (
-                    <div>
+                    <div key={comentarioItem.id}>
                         {(comentarioItem.sugerenciaId === id ?
-                            <Row className="my-2">
-                                <Col key={comentarioItem.id}>
+                            <Row className="my-2" >
+                                <Col>
                                     <Card className="flex-fill text-wrap">
                                         <Card.Body >
                                             <Card.Subtitle className="text-muted">Usuario XYZ respondió:</Card.Subtitle>

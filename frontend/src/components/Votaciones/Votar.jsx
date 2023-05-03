@@ -47,7 +47,7 @@ const Votar = (props) => {
     }; 
 
     let haVotado = false;
-        if (objetvoto?.userId == userId) {
+        if (objetvoto?.userId === userId) {
             haVotado = true;
         }
     

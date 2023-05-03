@@ -1,11 +1,10 @@
-import { Button, Col, Row } from "react-bootstrap";
+import { Col, Row } from "react-bootstrap";
 import { Container } from "react-bootstrap";
-import { Link } from "react-router-dom";
 import Card from 'react-bootstrap/Card';
 
 const VerContacto = () => {
     return (
-        <div class="contenedor-flexbox">
+        <div className="contenedor-flexbox">
             <Container style={{ maxHeight: '100vh', overflowY: 'scroll' }}>
                 <Row className="my-2">
                     <Col>

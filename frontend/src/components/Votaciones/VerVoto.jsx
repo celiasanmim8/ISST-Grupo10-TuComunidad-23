@@ -14,10 +14,10 @@ const VerVoto = (props) => {
         <div className="contenedor-flexbox">
             <Container>
                 {votoslist.map((VotoItem) => (
-                    <div>
+                    <div key={VotoItem.id}>
                         {(VotoItem.juntaId === id ?
                             <Row className="my-2">
-                                <Col key={VotoItem.id}>
+                                <Col>
                                     <Card className="flex-fill text-wrap">
                                         <Card.Body >
                                             <Card.Subtitle className="text-muted">Usuario XYZ respondió:</Card.Subtitle>

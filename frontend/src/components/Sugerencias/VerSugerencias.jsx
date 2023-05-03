@@ -21,8 +21,8 @@ const VerSugerencias = (props) => {
             </Row>
 
             {sugerenciaslist.slice().reverse().map((sugerenciasItem) => (
-                <Row className="my-2">
-                    <Col key={sugerenciasItem.id}>
+                <Row className="my-2" key={sugerenciasItem.id}>
+                    <Col>
                         <Card>
                             <Card.Body>
                                 <Card.Title href="#">{sugerenciasItem.titulo}</Card.Title>
