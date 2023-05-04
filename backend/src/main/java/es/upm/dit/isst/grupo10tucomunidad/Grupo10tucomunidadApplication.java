@@ -188,8 +188,8 @@ public class Grupo10tucomunidadApplication {
 
 				// PRESIVECINO
 				"SELECT @userId := id FROM usuarios WHERE tlf_number = '695947299' ORDER BY id DESC LIMIT 1",
-				"SELECT @roleId1 := id FROM roles WHERE nombre = 0",
-				"SELECT @roleId2 := id FROM roles WHERE nombre = 1",
+				"SELECT @roleId1 := id FROM roles WHERE nombre = 1",
+				"SELECT @roleId2 := id FROM roles WHERE nombre = 2",
 				"INSERT INTO usuarios_roles (usuarios_id, roles_id) VALUES (@userId, @roleId1)",
 				"INSERT INTO usuarios_roles (usuarios_id, roles_id) VALUES (@userId, @roleId2)",
 				"SELECT @datosvecinoId := id FROM datosvecino WHERE dni = '86904624K'",

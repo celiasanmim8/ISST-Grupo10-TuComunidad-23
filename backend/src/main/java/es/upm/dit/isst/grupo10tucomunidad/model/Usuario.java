@@ -44,6 +44,13 @@ public class Usuario {
                 inverseJoinColumns = @JoinColumn(name = "datosvecino_id"))
     private DatosVecino datosVecino;
 
+    public Usuario(String tlfNumber, String password, Set<Rol> roles, DatosVecino datosVecino) {
+        this.tlfNumber = tlfNumber;
+        this.password = password;
+        this.roles = roles;
+        this.datosVecino = datosVecino;
+    }
+
     public Usuario(String tlfNumber, String password, Set<Rol> roles) {
         this.tlfNumber = tlfNumber;
         this.password = password;
@@ -88,5 +95,13 @@ public class Usuario {
 
     public void setRoles(Set<Rol> roles) {
         this.roles = roles;
+    }
+
+    public DatosVecino getDatosVecino() {
+        return datosVecino;
+    }
+
+    public void setDatosVecino(DatosVecino datosVecino) {
+        this.datosVecino = datosVecino;
     }
 }
