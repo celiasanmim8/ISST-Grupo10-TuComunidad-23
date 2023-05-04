@@ -38,6 +38,7 @@ const VerVoto = (props) => {
                                         <Card.Body >
                                             <Card.Subtitle className="text-muted">Usuario XYZ votó:</Card.Subtitle>
                                             <Card.Text className="text-truncate">{VotoItem.voto}</Card.Text>
+                                            <Card.Subtitle className="text-muted">{`${votosPorJunta.aFavor} votos a favor, ${votosPorJunta.enContra} votos en contra, ${votosPorJunta.abstencion} abstenciones`}</Card.Subtitle>
                                         </Card.Body>
                                     </Card>
                                 </Col>
