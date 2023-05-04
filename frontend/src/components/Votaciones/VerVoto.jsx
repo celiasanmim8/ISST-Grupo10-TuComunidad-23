@@ -12,19 +12,40 @@ const VerVoto = (props) => {
     const id = props.juntaId;
     
     const contarVotosPorJunta = (votoslist, juntaId) => {
-        return votoslist.reduce((contador, voto) => {
+        let votosAFavor = 0;
+        let votosEnContra = 0;
+        let votosAbstencion = 0;
+      
+        votoslist.forEach((voto) => {
           if (voto.juntaId === juntaId) {
             if (voto.voto === 'A favor') {
-              contador.aFavor++;
+              votosAFavor++;
             } else if (voto.voto === 'En contra') {
-              contador.enContra++;
-            } else if (voto.voto === 'Abstención') {
-              contador.abstencion++;
+              votosEnContra++;
+            } else if (voto.voto === 'Abstencion') {
+              votosAbstencion++;
             }
           }
-          return contador;
-        }, { aFavor: 0, enContra: 0, abstencion: 0 });
-    }
+        });
+      
+        let opcionGanadora = '';
+        let maxVotos = Math.max(votosAFavor, votosEnContra, votosAbstencion);
+      
+        if (maxVotos === votosAFavor) {
+          opcionGanadora = 'A favor';
+        } else if (maxVotos === votosEnContra) {
+          opcionGanadora = 'En contra';
+        } else if (maxVotos === votosAbstencion) {
+          opcionGanadora = 'Abstencion';
+        }
+      
+        return {
+          votosAFavor,
+          votosEnContra,
+          votosAbstencion,
+          opcionGanadora
+        };
+      };
     const votosPorJunta = contarVotosPorJunta(votoslist, id);
     return (
         <div className="contenedor-flexbox">
@@ -38,7 +59,7 @@ const VerVoto = (props) => {
                                         <Card.Body >
                                             <Card.Subtitle className="text-muted">Usuario XYZ votó:</Card.Subtitle>
                                             <Card.Text className="text-truncate">{VotoItem.voto}</Card.Text>
-                                            <Card.Subtitle className="text-muted">{`${votosPorJunta.aFavor} votos a favor, ${votosPorJunta.enContra} votos en contra, ${votosPorJunta.abstencion} abstenciones`}</Card.Subtitle>
+                                            <Card.Subtitle className="text-muted">{`${votosPorJunta.votosAFavor} votos a favor, ${votosPorJunta.votosEnContra} votos en contra, ${votosPorJunta.votosAbstencion} abstenciones. Opción ganadora: ${votosPorJunta.opcionGanadora}`}</Card.Subtitle>
                                         </Card.Body>
                                     </Card>
                                 </Col>
