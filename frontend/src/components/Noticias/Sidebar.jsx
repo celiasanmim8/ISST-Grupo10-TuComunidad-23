@@ -34,7 +34,7 @@ const Sidebar = () => {
                             <CDBSidebarMenuItem icon="exclamation-circle">Contacto</CDBSidebarMenuItem>
                         </NavLink>
                         <hr/>
-                        <NavLink>
+                        <NavLink to="/gestionusuarios" activeclassname="activeClicked">
                             <CDBSidebarMenuItem icon="users-cog">Gestión de usuarios</CDBSidebarMenuItem>
                         </NavLink>
                         <NavLink>
