@@ -31,7 +31,7 @@ const VerJuntas = (props) => {
                                 </Card.Subtitle>
                                 <Card.Text>{juntaItem.descripcion}</Card.Text>
                                 {}
-                                { juntaItem.votacionActiva === '1' ? (
+                                { parseInt(juntaItem.votacionActiva) === parseInt('1') ? (
                                     <Link to={`/juntas/${juntaItem.id}`}>
                                     <Button variant='success' type='submit' style={{ width: '7rem' }}>Votar</Button>
                                     </Link>

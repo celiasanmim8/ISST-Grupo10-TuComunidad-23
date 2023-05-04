@@ -13,9 +13,6 @@ const Votar = (props) => {
     const userId = '1'; // a cambiar por el id de usuario de la sesion activa
     const objetvoto = votoslist?.[juntaId-1];
 
-    console.log(objetvoto);
-
-
     const handleVote = (e) => {
         setVote(e.target.value);
       };
@@ -47,7 +44,7 @@ const Votar = (props) => {
     }; 
 
     let haVotado = false;
-        if (objetvoto?.userId === userId) {
+        if (objetvoto?.userId === parseInt(userId)) {
             haVotado = true;
         }
     
