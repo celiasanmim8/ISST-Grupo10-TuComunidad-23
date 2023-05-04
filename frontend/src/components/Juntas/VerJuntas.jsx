@@ -9,6 +9,7 @@ const VerJuntas = (props) => {
     useRequireAuth();
     const juntaslist = props.juntaslist
     const votoslist = props.votoslist
+
     return (
         <Container style={{ maxHeight: '100vh', overflowY: 'scroll' }}>
             <Row className="my-2">
@@ -39,7 +40,7 @@ const VerJuntas = (props) => {
                                     <p className="text-muted mb-0" style={{ fontStyle: "italic" }}>La votación no esta activa para esta junta o ha expirado.</p>
                                 )}
                             </Card.Body>
-                            <VerVoto votoslist={votoslist} juntaslist={juntaslist} juntaId={juntaItem.id} />
+                           <VerVoto votoslist={votoslist} juntaslist={juntaslist} juntaId={juntaItem.id} /> 
                         </Card>
                     </Col>
                 </Row>
