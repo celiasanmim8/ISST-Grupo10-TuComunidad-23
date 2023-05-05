@@ -12,14 +12,15 @@ const VerJuntas = (props) => {
 
     return (
         <Container style={{ maxHeight: '100vh', overflowY: 'scroll' }}>
-            <Row className="my-2">
+
+                <Row className="my-2">
                 <Col>
                     <h2>Juntas</h2>
                     <Link to={'/juntas/crear'}>
-                        <Button>Crear nueva junta</Button>
+                    <Button>Crear nueva junta</Button>
                     </Link>
                 </Col>
-            </Row>
+                </Row>
 
             {juntaslist.slice().reverse().map((juntaItem) => (
                 <Row className="my-2" key={juntaItem.id}>
