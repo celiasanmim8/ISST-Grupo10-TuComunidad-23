@@ -142,7 +142,7 @@ function App() {
                     <Route path="/sugerencias/crear" element={<CrearSugerencias />} />
                     <Route path="/sugerencias/:sugerenciaId" element={<CrearComentario />} />
                     
-                    <Route path="/juntas" element={<VerJuntas juntaslist={juntaslist} votoslist={votoslist} usuarioslist={user.current}  />} />
+                    <Route path="/juntas" element={<VerJuntas juntaslist={juntaslist} votoslist={votoslist} userData={user.current}  />} />
                     <Route path="/juntas/crear" element={<CrearJunta />} />
                     <Route path="/juntas/:juntaId" element={<Votar votoslist={votoslist} />} />
                    

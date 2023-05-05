@@ -9,6 +9,12 @@ const VerJuntas = (props) => {
     useRequireAuth();
     const juntaslist = props.juntaslist
     const votoslist = props.votoslist
+    const userData = props.userData
+
+    let compruebaRole = false;
+    if (userData?.roles.includes('ROLE_ADMIN') || userData?.roles.includes('ROLE_PRESIDENTE')) {
+        compruebaRole = true;
+    }
 
     return (
         <Container style={{ maxHeight: '100vh', overflowY: 'scroll' }}>
@@ -16,9 +22,11 @@ const VerJuntas = (props) => {
                 <Row className="my-2">
                 <Col>
                     <h2>Juntas</h2>
+                    { compruebaRole ? 
                     <Link to={'/juntas/crear'}>
                     <Button>Crear nueva junta</Button>
                     </Link>
+                    : null  }
                 </Col>
                 </Row>
 
