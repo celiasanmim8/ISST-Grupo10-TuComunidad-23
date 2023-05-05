@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { Link, useNavigate, useParams } from "react-router-dom";
-import { Button, Form, Container, Col} from 'react-bootstrap';
+import { Button, Form, Container, Col, Row, Card } from 'react-bootstrap';
 import useRequireAuth from '../Login/useRequireAuth';
+
 
 
 const Votar = (props) => {
@@ -52,7 +53,12 @@ const Votar = (props) => {
         <div className="contenedor-flexbox">
             <Container>
                 {haVotado ? (
-                    <p>Usted ya ha votado</p>
+                    <Card className='text-center' style={{ marginTop: '8rem', backgroundColor: 'black'}}>
+                        <Card.Body>
+                            <h2 style={{ fontStyle: 'italic', color: '#ff6666' }}>Atención: Usted ya ha votado en esta junta.</h2>
+                            <img src='/logocasastres.jpeg' alt='Imagen de votación' className="rounded-circle" width="100" height="100"/>
+                        </Card.Body>
+                    </Card>
                 ) : (
                     <Form onSubmit={handleSubmit}>
                         <Form.Group className='mb-3'>
