@@ -58,7 +58,7 @@ const CreateNews = () => {
             setAdjunto(null);
         }
     };
-
+    
     return (
         <Container className='mx-4 my-4'>
             <h2>Nueva noticia</h2>

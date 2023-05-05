@@ -8,15 +8,23 @@ import useRequireAuth from "../Login/useRequireAuth";
 const VerNoticias = (props) => {
     useRequireAuth();
     const noticiaslist = props.noticiaslist;
+    const userData = props.userData
+
+    let compruebaRole = false;
+    if (userData?.roles.includes('ROLE_ADMIN') || userData?.roles.includes('ROLE_PRESIDENTE')) {
+        compruebaRole = true;
+    }
 
     return (
         <Container style={{ maxHeight: '100vh', overflowY: 'scroll' }}>
             <Row className="my-2">
                 <Col>
                     <h2>Últimas noticias</h2>
+                    { compruebaRole ? 
                     <Link to={'/noticias/crear'}>
                         <Button>Crear nueva noticia</Button>
                     </Link>
+                    : null }
                 </Col>
             </Row>
             <Row>

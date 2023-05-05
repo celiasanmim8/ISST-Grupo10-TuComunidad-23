@@ -131,10 +131,10 @@ function App() {
 
     return (
         <div className='contenedor-flexbox'>
-                {user.current && user.current.token && <Sidebar/>}
+                {user.current && user.current.token && <Sidebar userData = {user.current}/>}
                 <Routes>
                     <Route path="/" element={<Navigate replace to="/noticias" />}></Route>
-                    <Route path="/noticias" element={<VerNoticias noticiaslist={noticiaslist} />} />
+                    <Route path="/noticias" element={<VerNoticias noticiaslist={noticiaslist} userData = {user.current}/>} />
                     <Route path="/noticias/:noticiaId" element={<UnaNoticia noticiaslist={noticiaslist} />} />
                     <Route path="/noticias/crear" element={<CrearNoticias />} />
                   

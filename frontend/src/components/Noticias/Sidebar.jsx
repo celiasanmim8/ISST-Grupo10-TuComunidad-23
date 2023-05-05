@@ -9,7 +9,13 @@ import {
 } from 'cdbreact';
 import { NavLink } from 'react-router-dom';
 
-const Sidebar = () => {
+const Sidebar = (props) => {
+        const userData = props.userData
+
+    let compruebaRole = false;
+    if (userData?.roles.includes('ROLE_ADMIN') || userData?.roles.includes('ROLE_PRESIDENTE')) {
+        compruebaRole = true;
+    }
     return (
         <div style={{ overflowY: 'scroll initial', height: '100vh' }}>
             <CDBSidebar textColor="#fff" backgroundColor="#000000">
@@ -33,6 +39,8 @@ const Sidebar = () => {
                         <NavLink to="/contacto" activeclassname="activeClicked">
                             <CDBSidebarMenuItem icon="exclamation-circle">Contacto</CDBSidebarMenuItem>
                         </NavLink>
+                        { compruebaRole ? 
+                        <div>
                         <hr/>
                         <NavLink to="/gestionusuarios" activeclassname="activeClicked">
                             <CDBSidebarMenuItem icon="users-cog">Gestión de usuarios</CDBSidebarMenuItem>
@@ -41,6 +49,8 @@ const Sidebar = () => {
                             <CDBSidebarMenuItem icon="check">Admisión de registros</CDBSidebarMenuItem>
                         </NavLink>
                         <hr/>
+                        </div>
+                        : <div><hr/></div>}
                         <NavLink>
                             <CDBSidebarMenuItem icon="door-closed">Cerrar sesión</CDBSidebarMenuItem>
                         </NavLink>
