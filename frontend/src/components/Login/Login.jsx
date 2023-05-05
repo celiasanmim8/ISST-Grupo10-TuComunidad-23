@@ -93,7 +93,7 @@ const Login = () => {
                   <div className="col-md-6">
                     <Form onSubmit={handleLogin} ref={form}>
                       <div className="form-group">
-                        <label htmlFor="username" style={{ color: 'white' }}>Username</label>
+                        <label htmlFor="username" style={{ color: 'white' }}>Usuario</label>
                         <Input
                           type="text"
                           className="form-control"
@@ -105,7 +105,7 @@ const Login = () => {
                       </div>
       
                       <div className="form-group">
-                        <label htmlFor="password" style={{ color: 'white' }}>Password</label>
+                        <label htmlFor="password" style={{ color: 'white' }}>Contraseña</label>
                         <Input
                           type="password"
                           className="form-control"
