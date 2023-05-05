@@ -12,6 +12,7 @@ const VerVoto = (props) => {
     useRequireAuth();
     const votoslist = props.votoslist;
     const juntaId = props.juntaId;
+    const votacionActiva = props.votacionActiva;
     
     const contarVotosPorJunta = (votoslist, juntaId) => {
         let votosAFavor = 0;
@@ -71,10 +72,10 @@ const VerVoto = (props) => {
                         {(VotoItem.juntaId === juntaId ?
                             <Row className="my-2">
                                 <Col>
-                                    <Card className="flex-fill text-wrap bg-dark">
+                                    <Card className="flex-fill text-wrap" style={{ backgroundColor: '#f2f2f2' }}>
                                         <Card.Body >
                                             <Card.Subtitle className="text-muted text-white">Usuario {VotoItem.userId} votó:</Card.Subtitle>
-                                            <Card.Text className="text-truncate text-white"style={{fontWeight: 700}}>{VotoItem.voto}</Card.Text>
+                                            <Card.Text className="text-truncate text-black"style={{fontWeight: 700}}>{VotoItem.voto}</Card.Text>
                                         </Card.Body>
                                         </Card>
                                 </Col>
@@ -83,14 +84,16 @@ const VerVoto = (props) => {
                         }
                     </div>
                 ))}
-                <Row className="my-2">
-                    <Col>
-                        <Button onClick={handleToggleVotes}>
-                            {showVotes === null ? 'Mostrar votos de todas las opciones' : 'Ocultar votos'}
-                        </Button>
-                    </Col>
-                </Row>
-                {showVotes !== null && (
+                {votacionActiva !== 0 && (
+                    <Row className="my-2">
+                        <Col>
+                            <Button onClick={handleToggleVotes}>
+                                {showVotes === null ? 'Mostrar votos de todas las opciones' : 'Ocultar votos'}
+                            </Button>
+                        </Col>
+                    </Row>
+                )}
+                {showVotes !== null && votacionActiva !== 0 && (
                     <Row className="my-2">
                         <Col>
                             <Card>
