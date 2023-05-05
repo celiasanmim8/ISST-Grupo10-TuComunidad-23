@@ -146,7 +146,7 @@ function App() {
                     <Route path="/juntas/crear" element={<CrearJunta />} />
                     <Route path="/juntas/:juntaId" element={<Votar votoslist={votoslist} />} />
                    
-                    <Route path="/contacto" element={<VerContacto />} />
+                    <Route path="/contacto" element={<VerContacto usuarioslist={usuarioslist}/>} />
                     <Route path="/login" element={<Login location={location}/>} />
                     <Route path="/register" element={<Register/>} />
                     <Route path="/*" element={<Navigate to="/noticias"/>} />
