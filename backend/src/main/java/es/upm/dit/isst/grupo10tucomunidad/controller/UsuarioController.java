@@ -22,7 +22,7 @@ public class UsuarioController {
 
     @GetMapping("/gestionusuarios")
     @CrossOrigin(origins = "http://localhost:3000")
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ADMIN') or hasRole('VECINO') or hasRole('PRESIDENTE')")
     ResponseEntity<List<UsuarioDto>> readAll() {
         List<Usuario> usuarios = (List<Usuario>) usuarioRepository.findAll();
         List<UsuarioDto> usuarioDto = usuarios.stream().map(UsuarioDto::new).collect(Collectors.toList());
