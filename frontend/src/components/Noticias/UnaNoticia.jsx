@@ -2,6 +2,10 @@ import { useState } from "react";
 import { Button, Col, Image, Row, Container } from "react-bootstrap";
 import { Link, useParams } from "react-router-dom";
 import useRequireAuth from '../Login/useRequireAuth';
+import UserService from '../../services/user.service';
+
+
+
 
 const UnaNoticia = (props) => {
     useRequireAuth();
@@ -43,6 +47,7 @@ const UnaNoticia = (props) => {
                 <div className="news-button">
                     <Link to={'/noticias'}>
                         <Button>Volver</Button>
+                        <Button onClick={() => UserService.remove(noticiaId)}>Borrar</Button>
                     </Link>
                 </div>
             </Row>

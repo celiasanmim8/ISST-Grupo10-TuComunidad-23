@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -47,5 +48,14 @@ public class NoticiaController {
             noticiaRepository.save(noticia);
             return ResponseEntity.ok().body(noticia);
         }).orElse(new ResponseEntity<Noticia>(HttpStatus.NOT_FOUND));
+    }
+    @CrossOrigin(origins = "http://localhost:3000")
+    @DeleteMapping("/noticias/{id}")
+    @PreAuthorize("hasRole('ADMIN') or hasRole('PRESIDENTE')")
+    ResponseEntity<Noticia> delete(@PathVariable String id) {
+        noticiaRepository.deleteById(id);
+      return ResponseEntity.ok().body(null);
+      
+
     }
 }

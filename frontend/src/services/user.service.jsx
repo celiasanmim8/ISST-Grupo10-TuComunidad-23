@@ -47,6 +47,13 @@ class UserService {
         });
         return response.json();
     }
+    async remove(noticiaId) {
+        await fetch(`/noticias/${noticiaId}`, {
+            method: 'DELETE',
+            headers: authHeader()
+            
+        });
+    }
 }
 
 const userServiceInstance = new UserService();

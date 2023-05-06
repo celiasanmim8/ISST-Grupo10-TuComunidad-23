@@ -5,6 +5,8 @@ import Card from 'react-bootstrap/Card';
 import useRequireAuth from '../Login/useRequireAuth';
 import VerVoto from '../Votaciones/VerVoto';
 
+
+
 const VerJuntas = (props) => {
     useRequireAuth();
     const juntaslist = props.juntaslist
