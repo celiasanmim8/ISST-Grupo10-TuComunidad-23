@@ -136,14 +136,14 @@ function App() {
                     <Route path="/" element={<Navigate replace to="/noticias" />}></Route>
                     <Route path="/noticias" element={<VerNoticias noticiaslist={noticiaslist} userData = {user.current}/>} />
                     <Route path="/noticias/:noticiaId" element={<UnaNoticia noticiaslist={noticiaslist} />} />
-                    <Route path="/noticias/crear" element={<CrearNoticias />} />
+                    <Route path="/noticias/crear" element={<CrearNoticias userData={user.current} />} />
                   
                     <Route path="/sugerencias" element={<VerSugerencias sugerenciaslist={sugerenciaslist} comentariolist={comentariolist} />} />
                     <Route path="/sugerencias/crear" element={<CrearSugerencias />} />
                     <Route path="/sugerencias/:sugerenciaId" element={<CrearComentario />} />
                     
                     <Route path="/juntas" element={<VerJuntas juntaslist={juntaslist} votoslist={votoslist} userData={user.current}  />} />
-                    <Route path="/juntas/crear" element={<CrearJunta />} />
+                    <Route path="/juntas/crear" element={<CrearJunta userData={user.current} />} />
                     <Route path="/juntas/:juntaId" element={<Votar votoslist={votoslist} />} />
                    
                     <Route path="/contacto" element={<VerContacto usuarioslist={usuarioslist}/>} />

@@ -2,10 +2,11 @@ import React, { useState } from 'react';
 import { Button, Container, Form } from 'react-bootstrap';
 import { Link, useNavigate } from "react-router-dom";
 
-const CreateNews = () => {
+const CreateNews = (props) => {
     const [titulo, setTitulo] = useState('');
     const [descripcion, setDescripcion] = useState('');
     const [adjunto, setAdjunto] = useState(null);
+    const userData = props.userData;
     const navigate = useNavigate();
 
     const toByteArray = (file) =>
@@ -58,37 +59,45 @@ const CreateNews = () => {
             setAdjunto(null);
         }
     };
-    
+
+    let compruebaRole = false;
+    if (userData?.roles.includes('ROLE_ADMIN') || userData?.roles.includes('ROLE_PRESIDENTE')) {
+        compruebaRole = true;
+    }
     return (
-        <Container className='mx-4 my-4'>
-            <h2>Nueva noticia</h2>
-            <Form onSubmit={handleSubmit}>
-                <Form.Group className='mb-3'>
-                    <Form.Label className='h4'>Título</Form.Label>
-                    <Form.Control as="textarea" rows={2} onChange={(e) => setTitulo(e.target.value)}></Form.Control>
-                </Form.Group>
+        <div>
+            {compruebaRole ? 
+                <Container className='mx-4 my-4'>
+                    <h2>Nueva noticia</h2>
+                    <Form onSubmit={handleSubmit}>
+                        <Form.Group className='mb-3'>
+                            <Form.Label className='h4'>Título</Form.Label>
+                            <Form.Control as="textarea" rows={2} onChange={(e) => setTitulo(e.target.value)}></Form.Control>
+                        </Form.Group>
 
-                <Form.Group className='mb-3'>
-                    <Form.Label className='h4'>Descripción</Form.Label>
-                    <Form.Control as="textarea" rows={10} onChange={(e) => setDescripcion(e.target.value)}></Form.Control>
-                </Form.Group>
+                        <Form.Group className='mb-3'>
+                            <Form.Label className='h4'>Descripción</Form.Label>
+                            <Form.Control as="textarea" rows={10} onChange={(e) => setDescripcion(e.target.value)}></Form.Control>
+                        </Form.Group>
 
-                <Form.Group className='mb-3'>
-                    <Form.Label className='h4'>Imágenes adjuntas</Form.Label>
-                    <Form.Control type="file" onChange={handleFileChange}></Form.Control>
-                </Form.Group>
+                        <Form.Group className='mb-3'>
+                            <Form.Label className='h4'>Imágenes adjuntas</Form.Label>
+                            <Form.Control type="file" onChange={handleFileChange}></Form.Control>
+                        </Form.Group>
 
-                <Button variant='success' type='submit' style={{ width: '7rem' }}>
-                    Crear
-                </Button>{'  '}
+                        <Button variant='success' type='submit' style={{ width: '7rem' }}>
+                            Crear
+                        </Button>{'  '}
 
-                <Link to={"/noticias"}>
-                    <Button variant='danger' type='Volver' className='w-4' style={{ width: '7rem' }}>
-                        Cancelar
-                    </Button>
-                </Link>
-            </Form>
-        </Container>
+                        <Link to={"/noticias"}>
+                            <Button variant='danger' type='Volver' className='w-4' style={{ width: '7rem' }}>
+                                Cancelar
+                            </Button>
+                        </Link>
+                    </Form>
+                </Container>
+            : null }
+        </div>
     );
 };
 
