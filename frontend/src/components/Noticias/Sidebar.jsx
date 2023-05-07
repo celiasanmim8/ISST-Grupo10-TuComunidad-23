@@ -16,6 +16,13 @@ const Sidebar = (props) => {
     if (userData?.roles.includes('ROLE_ADMIN') || userData?.roles.includes('ROLE_PRESIDENTE')) {
         compruebaRole = true;
     }
+
+    const cerrarSesion = () => {
+
+        localStorage.setItem('user', null);
+
+      };
+
     return (
         <div style={{ overflowY: 'scroll initial', height: '100vh' }}>
             <CDBSidebar textColor="#fff" backgroundColor="#000000">
@@ -52,7 +59,7 @@ const Sidebar = (props) => {
                         </div>
                         : <div><hr/></div>}
                         <NavLink>
-                            <CDBSidebarMenuItem icon="door-closed">Cerrar sesión</CDBSidebarMenuItem>
+                            <CDBSidebarMenuItem icon="door-closed" onClick={cerrarSesion}>Cerrar sesión</CDBSidebarMenuItem>
                         </NavLink>
                     </CDBSidebarMenu>
                 </CDBSidebarContent>
