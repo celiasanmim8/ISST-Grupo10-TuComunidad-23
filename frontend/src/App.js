@@ -28,6 +28,7 @@ function App() {
     const [votoslist, setVotosList] = useState([]);
     const [usuarioslist, setUsuarioslist] = useState([]);
     const user = useRef(null);
+    
 
     useEffect(() => {
         if (!user.current || (JSON.parse(localStorage.getItem('user').token !== user.current.token))) {
@@ -129,6 +130,8 @@ function App() {
             };
         }
     }, [location]);
+
+
 
     return (
         <div className='contenedor-flexbox'>

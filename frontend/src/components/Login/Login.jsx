@@ -20,6 +20,7 @@ const Login = () => {
 
     const form = useRef();
     const checkBtn = useRef();
+    
 
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
@@ -44,7 +45,7 @@ const Login = () => {
         if (checkBtn.current.context._errors.length === 0) {
             AuthService.login(username, password).then(
                 () => {
-                    navigate("/noticias");
+                    navigate("/noticias");    
                 },
                 (error) => {
                     const resMessage =
