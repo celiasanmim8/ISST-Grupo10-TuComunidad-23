@@ -3,11 +3,14 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import { Button, Form, Container } from 'react-bootstrap';
 import useRequireAuth from '../Login/useRequireAuth';
 
-const CrearSugerencias = () => {
+const CrearSugerencias = (props) => {
     useRequireAuth();
     const [descripcion, setDescripcion] = useState('');
     const navigate = useNavigate();
     let{sugerenciaId} = useParams();
+    const userData = props?.userData;
+    const userId = userData?.id; // a cambiar por el id de usuario de la sesion activa
+
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -16,7 +19,7 @@ const CrearSugerencias = () => {
                 descripcion,
                 sugerenciaId: sugerenciaId,
                 // TODO: cambiar cuando se establezca sesiones de usuario
-                userId: 1,
+                userId: userId,
             };
 
             const requestOptions = {

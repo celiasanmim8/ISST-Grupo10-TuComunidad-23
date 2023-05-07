@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate, useParams } from "react-router-dom";
-import { Button, Form, Container, Col, Row, Card } from 'react-bootstrap';
+import { Button, Form, Container, Col, Card } from 'react-bootstrap';
 import useRequireAuth from '../Login/useRequireAuth';
 
 
@@ -11,7 +11,8 @@ const Votar = (props) => {
     const navigate = useNavigate();
     let{juntaId} = useParams();
     const votoslist = props.votoslist;
-    const userId = '1'; // a cambiar por el id de usuario de la sesion activa
+    const userData = props?.userData;
+    const userId = userData?.id; // a cambiar por el id de usuario de la sesion activa
     const objetvoto = votoslist?.[juntaId-1];
 
     const handleVote = (e) => {
@@ -25,7 +26,7 @@ const Votar = (props) => {
                 voto: vote,
                 juntaId: juntaId,
                 // TODO: cambiar cuando se establezca sesiones de usuario
-                userId: 1,
+                userId: userId,
             };
 
             const requestOptions = {
@@ -45,8 +46,15 @@ const Votar = (props) => {
     }; 
 
     let haVotado = false;
-        if (objetvoto?.userId === parseInt(userId)) {
-            haVotado = true;
+        if (objetvoto?.userId === parseInt(userId)) { // El problema es que objetVoto es un conjunto de votaciones, con juntaId = 2 por ejemplo,
+            haVotado = true; // hay que buscar la que tiene userId igual al del usuario que quiere votar, como se puede ver en él
+
+       // const objetvoto = votoslist?.[juntaId - 1];
+       // const votoEncontrado = objetvoto.find(votoItem => votoItem.juntaId === juntaId - 1 && votoItem.userId === userId);
+       //  if (votoEncontrado) {
+       // haVotado = true;   // NO FUNCIONA =(
+       // }
+ 
         }
     
     return (

@@ -6,8 +6,10 @@ const CreateNews = (props) => {
     const [titulo, setTitulo] = useState('');
     const [descripcion, setDescripcion] = useState('');
     const [adjunto, setAdjunto] = useState(null);
-    const userData = props.userData;
     const navigate = useNavigate();
+    const userData = props?.userData;
+    const userId = userData?.id; // a cambiar por el id de usuario de la sesion activa
+
 
     const toByteArray = (file) =>
         new Promise((resolve, reject) => {
@@ -29,7 +31,7 @@ const CreateNews = (props) => {
                 titulo,
                 descripcion,
                 // TODO: cambiar cuando se establezca sesiones de usuario
-                userId: 1,
+                userId: userId,
                 fechaCreacion: new Date().toISOString(),
             };
 
@@ -64,6 +66,7 @@ const CreateNews = (props) => {
     if (userData?.roles.includes('ROLE_ADMIN') || userData?.roles.includes('ROLE_PRESIDENTE')) {
         compruebaRole = true;
     }
+    
     return (
         <div>
             {compruebaRole ? 

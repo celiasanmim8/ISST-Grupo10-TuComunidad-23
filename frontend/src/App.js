@@ -143,12 +143,12 @@ function App() {
                     <Route path="/noticias/crear" element={<CrearNoticias userData={user.current} />} />
                   
                     <Route path="/sugerencias" element={<VerSugerencias sugerenciaslist={sugerenciaslist} comentariolist={comentariolist} />} />
-                    <Route path="/sugerencias/crear" element={<CrearSugerencias />} />
-                    <Route path="/sugerencias/:sugerenciaId" element={<CrearComentario />} />
+                    <Route path="/sugerencias/crear" element={<CrearSugerencias userData={user.current}/>} />
+                    <Route path="/sugerencias/:sugerenciaId" element={<CrearComentario userData={user.current}/>} />
                     
                     <Route path="/juntas" element={<VerJuntas juntaslist={juntaslist} votoslist={votoslist} userData={user.current}  />} />
                     <Route path="/juntas/crear" element={<CrearJunta userData={user.current} />} />
-                    <Route path="/juntas/:juntaId" element={<Votar votoslist={votoslist} />} />
+                    <Route path="/juntas/:juntaId" element={<Votar votoslist={votoslist} userData={user.current}/>} />
                    
                     <Route path="/gestionusuarios" element={<GestionUsuario usuarioslist={usuarioslist}/>}/>
                     <Route path="/gestionusuarios/:usuarioId" element={<VerUnUsuario usuarioslist={usuarioslist}/>}/>
