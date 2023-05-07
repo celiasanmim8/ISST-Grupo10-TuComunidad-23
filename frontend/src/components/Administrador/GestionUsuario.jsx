@@ -2,6 +2,7 @@ import useRequireAuth from "../Login/useRequireAuth";
 import { Link } from "react-router-dom";
 import { Container, Row, Col } from "react-bootstrap";
 import Card from 'react-bootstrap/Card';
+import { ArrowRight } from "react-bootstrap-icons";
 
 const GestionUsuario = (props) => {
     useRequireAuth();
@@ -34,9 +35,18 @@ const GestionUsuario = (props) => {
                                     <Card.Subtitle className="text-muted">
                                         <p>DNI: {usuarioItem.datosVecino.dni}<br />
                                             Dirección: {usuarioItem.datosVecino.piso}{usuarioItem.datosVecino.letra}<br />
-                                            Roles: <RolesList roles={usuarioItem.roles} /></p>
+                                            Rol: <RolesList roles={usuarioItem.roles} /></p>
                                     </Card.Subtitle>
                                 </Card.Body>
+                                <div className="arrow" style={{
+                                    position: 'absolute',
+                                    right: '20px',
+                                    top: '50%',
+                                    transform: 'translateY(-50%)',
+                                    fontSize: '2rem'
+                                }}>
+                                    <ArrowRight color="royalblue" />
+                                </div>
                             </Card>
                         </Link>
                     </Col>
