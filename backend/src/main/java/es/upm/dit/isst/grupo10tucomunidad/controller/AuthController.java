@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import es.upm.dit.isst.grupo10tucomunidad.model.DatosVecino;
 import es.upm.dit.isst.grupo10tucomunidad.model.ERol;
 import es.upm.dit.isst.grupo10tucomunidad.model.Rol;
 import es.upm.dit.isst.grupo10tucomunidad.model.Usuario;
@@ -85,6 +86,7 @@ public class AuthController {
 
         Set<String> strRoles = signUpRequest.getRol();
         Set<Rol> roles = new HashSet<>();
+        DatosVecino datosVecino = signUpRequest.getDatosVecino();
 
         if (strRoles == null) {
             Rol userRole = roleRepository.findByNombre(ERol.ROLE_VECINO)
@@ -114,6 +116,7 @@ public class AuthController {
         }
 
         user.setRoles(roles);
+        user.setDatosVecino(datosVecino);
         userRepository.save(user);
 
         return ResponseEntity.ok(new MessageResponse("User registered successfully!"));

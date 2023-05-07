@@ -1,4 +1,5 @@
 import useRequireAuth from "../Login/useRequireAuth";
+import { Link } from "react-router-dom";
 import { Container, Row, Col } from "react-bootstrap";
 import Card from 'react-bootstrap/Card';
 
@@ -9,9 +10,9 @@ const GestionUsuario = (props) => {
     const RolesList = ({ roles }) => (
         <ul>
             {roles.sort((a, b) => a.nombre.localeCompare(b.nombre))
-            .map((role, index) => (
-                <li key={index}>{role.nombre}</li>
-            ))}
+                .map((role, index) => (
+                    <li key={index}>{role.nombre}</li>
+                ))}
         </ul>
     );
 
@@ -26,16 +27,18 @@ const GestionUsuario = (props) => {
                 {usuarioslist.slice().reverse().map((usuarioItem) => (
                     <Col key={usuarioItem.id} md={4}>
                         {/* Poner un link para modificar */}
-                        <Card className="my-1">
-                            <Card.Body stlye = {{ maxWidth: '90%' }}>
-                                <Card.Title>{usuarioItem.tlfNumber}</Card.Title>
-                                <Card.Subtitle className="text-muted">
-                                    <p>DNI: {usuarioItem.datosVecino.dni}<br/>
-                                    Dirección: {usuarioItem.datosVecino.piso}{usuarioItem.datosVecino.letra}<br/>
-                                    Roles: <RolesList roles={usuarioItem.roles}/></p>
-                                </Card.Subtitle>
-                            </Card.Body>
-                        </Card>
+                        <Link to={`/gestionusuarios/${usuarioItem.id}`} style={{ color: 'black', textDecoration: 'none' }}>
+                            <Card className="my-1">
+                                <Card.Body stlye={{ maxWidth: '90%' }}>
+                                    <Card.Title>{usuarioItem.tlfNumber}</Card.Title>
+                                    <Card.Subtitle className="text-muted">
+                                        <p>DNI: {usuarioItem.datosVecino.dni}<br />
+                                            Dirección: {usuarioItem.datosVecino.piso}{usuarioItem.datosVecino.letra}<br />
+                                            Roles: <RolesList roles={usuarioItem.roles} /></p>
+                                    </Card.Subtitle>
+                                </Card.Body>
+                            </Card>
+                        </Link>
                     </Col>
                 ))}
             </Row>

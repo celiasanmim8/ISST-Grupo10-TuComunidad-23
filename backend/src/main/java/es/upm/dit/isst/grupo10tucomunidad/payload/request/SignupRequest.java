@@ -5,6 +5,8 @@ import java.util.Set;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
+import es.upm.dit.isst.grupo10tucomunidad.model.DatosVecino;
+
 public class SignupRequest {
     @NotBlank
     @Size(min = 9, max = 9)
@@ -15,6 +17,8 @@ public class SignupRequest {
     @NotBlank
     @Size(min = 6, max = 40)
     private String password;
+
+    private DatosVecino datosVecino;
 
     public String getTlfNumber() {
         return tlfNumber;
@@ -38,5 +42,13 @@ public class SignupRequest {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public DatosVecino getDatosVecino() {
+        return datosVecino;
+    }
+
+    public void setDatosVecino(DatosVecino datosVecino) {
+        this.datosVecino = datosVecino;
     }
 }

@@ -137,13 +137,13 @@ public class Grupo10tucomunidadApplication {
 	public CommandLineRunner initialUsuarioData(UsuarioRepository usuarioRespository) {
 		return (args) -> {
 			usuarioRespository.save(new Usuario(
-				"123456789", 
+				"000000000", 
 				"$2a$12$oH/Ci..a5Tz8pjNhZesP3..BUIvGy4SU89M4JSOpbo8j7w.04W.FG"));
 			usuarioRespository.save(new Usuario(
-				"695947299", 
+				"111111111", 
 				"$2a$12$oH/Ci..a5Tz8pjNhZesP3..BUIvGy4SU89M4JSOpbo8j7w.04W.FG"));
 			usuarioRespository.save(new Usuario(
-				"682586167", 
+				"222222222", 
 				"$2a$12$oH/Ci..a5Tz8pjNhZesP3..BUIvGy4SU89M4JSOpbo8j7w.04W.FG"));	
 		};
 	}
@@ -180,23 +180,21 @@ public class Grupo10tucomunidadApplication {
 		return (args) -> {
 			String[] instructionArr = {
 				// ADMIN
-				"SELECT @userId := id FROM usuarios WHERE tlf_number = '123456789' ORDER BY id DESC LIMIT 1",
+				"SELECT @userId := id FROM usuarios WHERE tlf_number = '000000000' ORDER BY id DESC LIMIT 1",
 				"SELECT @roleId1 := id FROM roles WHERE nombre = 0",
 				"INSERT INTO usuarios_roles (usuarios_id, roles_id) VALUES (@userId, @roleId1)",
 				"SELECT @datosvecinoId := id FROM datosvecino WHERE dni = '38347413L'",
 				"INSERT INTO usuarios_datos (usuarios_id, datosvecino_id) VALUES (@userId, @datosvecinoId)",
 
-				// PRESIVECINO
-				"SELECT @userId := id FROM usuarios WHERE tlf_number = '695947299' ORDER BY id DESC LIMIT 1",
+				// PRESIDENTE
+				"SELECT @userId := id FROM usuarios WHERE tlf_number = '111111111' ORDER BY id DESC LIMIT 1",
 				"SELECT @roleId1 := id FROM roles WHERE nombre = 1",
-				"SELECT @roleId2 := id FROM roles WHERE nombre = 2",
 				"INSERT INTO usuarios_roles (usuarios_id, roles_id) VALUES (@userId, @roleId1)",
-				"INSERT INTO usuarios_roles (usuarios_id, roles_id) VALUES (@userId, @roleId2)",
 				"SELECT @datosvecinoId := id FROM datosvecino WHERE dni = '86904624K'",
 				"INSERT INTO usuarios_datos (usuarios_id, datosvecino_id) VALUES (@userId, @datosvecinoId)",
 
 				// VECINO
-				"SELECT @userId := id FROM usuarios WHERE tlf_number = '682586167' ORDER BY id DESC LIMIT 1",
+				"SELECT @userId := id FROM usuarios WHERE tlf_number = '222222222' ORDER BY id DESC LIMIT 1",
 				"SELECT @roleId1 := id FROM roles WHERE nombre = 2",
 				"INSERT INTO usuarios_roles (usuarios_id, roles_id) VALUES (@userId, @roleId1)",
 				"SELECT @datosvecinoId := id FROM datosvecino WHERE dni = '41410277L'",

@@ -21,6 +21,7 @@ import es.upm.dit.isst.grupo10tucomunidad.repository.NoticiaRepository;
 @RestController
 public class NoticiaController {
     private final NoticiaRepository noticiaRepository;
+
     public NoticiaController(NoticiaRepository n) {
         this.noticiaRepository = n;
     }
@@ -49,13 +50,13 @@ public class NoticiaController {
             return ResponseEntity.ok().body(noticia);
         }).orElse(new ResponseEntity<Noticia>(HttpStatus.NOT_FOUND));
     }
+
     @CrossOrigin(origins = "http://localhost:3000")
     @DeleteMapping("/noticias/{id}")
     @PreAuthorize("hasRole('ADMIN') or hasRole('PRESIDENTE')")
     ResponseEntity<Noticia> delete(@PathVariable String id) {
         noticiaRepository.deleteById(id);
-      return ResponseEntity.ok().body(null);
-      
+        return ResponseEntity.ok().body(null);
 
     }
 }

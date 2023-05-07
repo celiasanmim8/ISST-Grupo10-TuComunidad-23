@@ -17,6 +17,7 @@ import Register from './components/Login/Register';
 import UserService from './services/user.service';
 import { useRef } from 'react';
 import GestionUsuario from './components/Administrador/GestionUsuario';
+import VerUnUsuario from './components/Administrador/VerUnUsuario';
 
 function App() {
     const location = useLocation();
@@ -146,12 +147,13 @@ function App() {
                     <Route path="/juntas/crear" element={<CrearJunta userData={user.current} />} />
                     <Route path="/juntas/:juntaId" element={<Votar votoslist={votoslist} />} />
                    
+                    <Route path="/gestionusuarios" element={<GestionUsuario usuarioslist={usuarioslist}/>}/>
+                    <Route path="/gestionusuarios/:usuarioId" element={<VerUnUsuario usuarioslist={usuarioslist}/>}/>
+
                     <Route path="/contacto" element={<VerContacto usuarioslist={usuarioslist}/>} />
                     <Route path="/login" element={<Login location={location}/>} />
                     <Route path="/register" element={<Register/>} />
                     <Route path="/*" element={<Navigate to="/noticias"/>} />
-
-                    <Route path="/gestionusuarios" element={<GestionUsuario usuarioslist={usuarioslist}/>}/>
                 </Routes>
         </div>
     );
