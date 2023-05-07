@@ -34,7 +34,7 @@ public class VotacionController {
 
     @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping("/juntas/votos")
-    @PreAuthorize("hasRole('ADMIN') or hasRole('PRESIDENTE')")
+    @PreAuthorize("hasRole('ADMIN') or hasRole('PRESIDENTE') or hasRole('VECINO')")
     ResponseEntity<Votacion> create(@RequestBody Votacion newVotacion) throws URISyntaxException {
         Votacion res = votacionRepository.save(newVotacion);
         return ResponseEntity.created(new URI("/juntas/votos/")).body(res);
@@ -42,7 +42,7 @@ public class VotacionController {
 
     @CrossOrigin(origins = "http://localhost:3000")
     @PutMapping("/juntas/votos")
-    @PreAuthorize("hasRole('ADMIN') or hasRole('PRESIDENTE')")
+    @PreAuthorize("hasRole('ADMIN') or hasRole('PRESIDENTE') or hasRole('VECINO')")
     ResponseEntity<Votacion> update(@RequestBody Votacion newVotacion, @PathVariable String id) {
         return votacionRepository.findById(id).map(votacion -> {
             votacionRepository.save(votacion);

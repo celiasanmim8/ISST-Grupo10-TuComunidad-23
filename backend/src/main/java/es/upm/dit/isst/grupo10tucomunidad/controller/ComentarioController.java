@@ -34,7 +34,7 @@ public class ComentarioController {
 
     @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping("/sugerencias/responder")
-    @PreAuthorize("hasRole('ADMIN') or hasRole('PRESIDENTE')")
+    @PreAuthorize("hasRole('ADMIN') or hasRole('PRESIDENTE') or hasRole('VECINO')")
     ResponseEntity<Comentario> create(@RequestBody Comentario newComentario) throws URISyntaxException {
         Comentario res = comentarioRepository.save(newComentario);
         return ResponseEntity.created(new URI("/sugerencias/responder/")).body(res);
@@ -42,7 +42,7 @@ public class ComentarioController {
 
     @CrossOrigin(origins = "http://localhost:3000")
     @PutMapping("/sugerencias/responder")
-    @PreAuthorize("hasRole('ADMIN') or hasRole('PRESIDENTE')")
+    @PreAuthorize("hasRole('ADMIN') or hasRole('PRESIDENTE') or hasRole('VECINO') ")
     ResponseEntity<Comentario> update(@RequestBody Comentario newComentario, @PathVariable String id) {
         return comentarioRepository.findById(id).map(comentario -> {
             comentarioRepository.save(comentario);

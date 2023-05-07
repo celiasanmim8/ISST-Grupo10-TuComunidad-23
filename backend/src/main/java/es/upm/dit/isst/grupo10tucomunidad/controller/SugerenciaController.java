@@ -33,7 +33,7 @@ public class SugerenciaController {
 
     @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping("/sugerencias")
-    @PreAuthorize("hasRole('ADMIN') or hasRole('PRESIDENTE')")
+    @PreAuthorize("hasRole('ADMIN') or hasRole('PRESIDENTE') or hasRole('VECINO')")
     ResponseEntity<Sugerencia> create(@RequestBody Sugerencia newNSugerencia) throws URISyntaxException {
         Sugerencia res = sugerenciaRepository.save(newNSugerencia);
         return ResponseEntity.created(new URI("/sugerencias/" + res.getId())).body(res);
@@ -41,7 +41,7 @@ public class SugerenciaController {
 
     @CrossOrigin(origins = "http://localhost:3000")
     @PutMapping("/sugerencias/{id}")
-    @PreAuthorize("hasRole('ADMIN') or hasRole('PRESIDENTE')")
+    @PreAuthorize("hasRole('ADMIN') or hasRole('PRESIDENTE') or hasRole('VECINO')")
     ResponseEntity<Sugerencia> update(@RequestBody Sugerencia newNSugerencia, @PathVariable String id) {
         return sugerenciaRepository.findById(id).map(sugerencia -> {
             sugerenciaRepository.save(sugerencia);
