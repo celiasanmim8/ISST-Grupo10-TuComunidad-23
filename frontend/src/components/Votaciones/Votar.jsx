@@ -46,16 +46,14 @@ const Votar = (props) => {
     }; 
 
     let haVotado = false;
-        if (objetvoto?.userId === parseInt(userId)) { // El problema es que objetVoto es un conjunto de votaciones, con juntaId = 2 por ejemplo,
-            haVotado = true; // hay que buscar la que tiene userId igual al del usuario que quiere votar, como se puede ver en él
 
-       // const objetvoto = votoslist?.[juntaId - 1];
-       // const votoEncontrado = objetvoto.find(votoItem => votoItem.juntaId === juntaId - 1 && votoItem.userId === userId);
-       //  if (votoEncontrado) {
-       // haVotado = true;   // NO FUNCIONA =(
-       // }
- 
-        }
+    for (let i = 0; i < votoslist.length; i++) {
+      const votoItem = votoslist[i];
+      if (votoItem.userId === userId && votoItem.juntaId === parseInt(juntaId)) {
+        haVotado = true;
+        break;
+      }
+    }
     
     return (
         <div className="contenedor-flexbox">
